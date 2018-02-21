@@ -1,23 +1,28 @@
 package bbsmt.bloqq.bloqq.controller;
 
+import bbsmt.bloqq.bloqq.entities.BloqqPost;
+import bbsmt.bloqq.bloqq.repository.BloqqRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by stein on 14.02.2018.
  */
 
 @Controller
-@RequestMapping("/bloqqpost/{id}")
+@RequestMapping("/bloqqposts/")
 public class BloqqPostController {
 
-    @RequestMapping(value = "/bloqqpost/{id}", method = RequestMethod.GET)
-    public String bloqqpost(@PathVariable int id) {
+    @Autowired
+    private BloqqRepository bloqqRepository;
 
-        return "bloqqpost";
+    public BloqqPostController(BloqqRepository bloqqRepository) {
+        this.bloqqRepository = bloqqRepository;
     }
 
+    @GetMapping("/")
+    public Iterable<BloqqPost> list(){
+        return bloqqRepository.findAll();
+    }
 }

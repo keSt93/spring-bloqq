@@ -1,5 +1,6 @@
 package bbsmt.bloqq.bloqq.entities;
 
+import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Date;
 public class BloqqPost {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     @Column
