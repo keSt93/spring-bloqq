@@ -3,11 +3,16 @@
 <head lang="en" th:include="/fragments/header :: head">
 <body>
 <nav th:include="/fragments/navigation :: navigation"/>
-
 <main role="main" class="container">
-
+    <div class="row">
+        <div class="col-md-12">
+            <h1 th:text="${bloqqpost.titel}"></h1>
+        </div>
+        <div class="col-md-12">
+            <p th:text="${bloqqpost.content}"></p>
+        </div>
+    </div>
 </main>
-
 <footer th:include="/fragments/footer :: footer"/>
 </body>
 </html>

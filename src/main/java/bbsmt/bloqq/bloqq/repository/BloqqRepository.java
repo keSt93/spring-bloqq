@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BloqqRepository extends PagingAndSortingRepository<BloqqPost, Integer> {
-
+    public BloqqPost findById(int id);
 }
