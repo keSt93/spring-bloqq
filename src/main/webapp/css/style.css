@@ -3,4 +3,18 @@ body {
   color: black;
   font-size: 14px; }
 
+main {
+  margin-top: 5rem; }
+
+.bloqqPost__container {
+  border: 1px solid rgba(155, 155, 155, 0.5);
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  transition: transform .5s; }
+  .bloqqPost__container:hover {
+    transform: scale(1.01); }
+  .bloqqPost__container .bloqqPost__container-headline__container {
+    margin-bottom: 1rem; }
+
 /*# sourceMappingURL=../../../../target/style.css.map */

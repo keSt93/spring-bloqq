@@ -5,11 +5,20 @@
 <nav th:include="/fragments/navigation :: navigation"/>
 <main role="main" class="container">
     <div class="row">
-        <div class="col-md-12">
-            <h1 th:text="${bloqqpost.titel}"></h1>
+
+        <div class="col-md-8 bloqqPost__container">
+            <h1 class="bloqqPost__container-headline" th:text="${bloqqpost.titel}"></h1>
+            <div class="bloqqPost__container-text__container" th:text="${bloqqpost.content}">
         </div>
-        <div class="col-md-12">
-            <p th:text="${bloqqpost.content}"></p>
+
+        <div class="col-md-4 sideBar__container">
+            <div class="bloqqPost__detailbox">
+
+            </div>
+
+            <h1 class="bloqqPost__container-headline"> Das könnte Sie auch interessieren</h1>
+        </div>
+
         </div>
     </div>
 </main>
