@@ -1,0 +1,27 @@
+nav {
+  padding: 0 1rem !important;
+  background-color: $navbar-bg-color;
+}
+.navbar-nav {
+  .nav-item {
+    background-color: $nav-bg-color;
+    transform: skew(-15deg);
+    padding: .5rem;
+    transition: transform .5s;
+
+    &.active, &:hover {
+      background-color: $nav-bg-color-active;
+    }
+    &:hover {
+      transform: skew(-15deg) scale(1.05);
+    }
+    &:hover .nav-link {
+      color: white;
+    }
+
+    .nav-link {
+      color: $nav-color;
+      transform: skew(15deg);
+    }
+  }
+}

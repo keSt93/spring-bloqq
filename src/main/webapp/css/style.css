@@ -28,11 +28,16 @@ nav {
   background-color: #494949; }
 
 .navbar-nav .nav-item {
-  background-color: #4fb3ff;
+  background-color: #098ec6;
   transform: skew(-15deg);
-  padding: .3rem; }
-  .navbar-nav .nav-item.active {
-    background-color: brighten(#82c9ff, 5); }
+  padding: .5rem;
+  transition: transform .5s; }
+  .navbar-nav .nav-item.active, .navbar-nav .nav-item:hover {
+    background-color: #087dae; }
+  .navbar-nav .nav-item:hover {
+    transform: skew(-15deg) scale(1.05); }
+  .navbar-nav .nav-item:hover .nav-link {
+    color: white; }
   .navbar-nav .nav-item .nav-link {
     color: white;
     transform: skew(15deg); }

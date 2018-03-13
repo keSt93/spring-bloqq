@@ -7,6 +7,6 @@ $body-font-size: 14px;
 $primary-color: #006dc1;
 
 $navbar-bg-color: #494949;
-$nav-bg-color: darken($primary-color, 2);
-$nav-bg-color-active: lighten($primary-color, 5);
+$nav-bg-color: #098ec6;
+$nav-bg-color-active: darken($nav-bg-color, 5);
 $nav-color: white;
