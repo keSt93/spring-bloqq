@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:include="/fragments/header :: head">
+<body>
+<nav th:include="/fragments/navigation :: navigation"/>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <intput th:value="${registerUser.userName}"></intput>
+        </div>
+        <div class="col-md-12">
+            <input th:value="${registerUser.password}"></input>
+        </div>
+    </div>
+</main>
+<footer th:include="/fragments/footer :: footer"/>
+</body>
+</html>
