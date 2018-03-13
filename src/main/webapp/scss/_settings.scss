@@ -2,3 +2,11 @@
 $body-bg-color: white;
 $body-fg-color: black;
 $body-font-size: 14px;
+
+
+$primary-color: #006dc1;
+
+$navbar-bg-color: #494949;
+$nav-bg-color: darken($primary-color, 2);
+$nav-bg-color-active: lighten($primary-color, 5);
+$nav-color: white;

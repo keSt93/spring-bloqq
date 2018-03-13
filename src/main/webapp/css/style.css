@@ -23,4 +23,18 @@ main {
   padding: 2rem;
   border-radius: 5px; }
 
+nav {
+  padding: 0 1rem !important;
+  background-color: #494949; }
+
+.navbar-nav .nav-item {
+  background-color: #4fb3ff;
+  transform: skew(-15deg);
+  padding: .3rem; }
+  .navbar-nav .nav-item.active {
+    background-color: brighten(#82c9ff, 5); }
+  .navbar-nav .nav-item .nav-link {
+    color: white;
+    transform: skew(15deg); }
+
 /*# sourceMappingURL=../../../../target/style.css.map */
