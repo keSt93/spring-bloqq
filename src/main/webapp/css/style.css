@@ -11,10 +11,16 @@ main {
   padding: 2rem;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-  transition: transform .5s; }
+  transition: transform .5s;
+  margin-bottom: 2rem; }
   .bloqqPost__container:hover {
     transform: scale(1.01); }
-  .bloqqPost__container .bloqqPost__container-headline__container {
+  .bloqqPost__container .bloqqPost__container-headline {
     margin-bottom: 1rem; }
+
+.bloqqPost__detailbox {
+  border: 1px solid rgba(155, 155, 155, 0.5);
+  padding: 2rem;
+  border-radius: 5px; }
 
 /*# sourceMappingURL=../../../../target/style.css.map */

@@ -8,18 +8,17 @@
 
         <div class="col-md-8 bloqqPost__container">
             <h1 class="bloqqPost__container-headline" th:text="${bloqqpost.titel}"></h1>
-            <div class="bloqqPost__container-text__container" th:text="${bloqqpost.content}">
+            <div class="bloqqPost__container-text__container" th:text="${bloqqpost.content}"></div>
         </div>
 
         <div class="col-md-4 sideBar__container">
             <div class="bloqqPost__detailbox">
-
+                <span> Am </span>
+                <span th:text="${bloqqpost.updated}"></span>
+                <span> verfasst. </span>
             </div>
-
-            <h1 class="bloqqPost__container-headline"> Das könnte Sie auch interessieren</h1>
         </div>
 
-        </div>
     </div>
 </main>
 <footer th:include="/fragments/footer :: footer"/>
