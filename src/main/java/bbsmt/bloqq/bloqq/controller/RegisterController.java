@@ -22,10 +22,11 @@ public class RegisterController {
     private UserRepository userRepository;
 
     @GetMapping(value = "/register")
-    public String showView(Model model)
+    public ModelAndView showView()
     {
-        model.addAttribute("registerUser", new User());
-        return "registerUser";
+        ModelAndView modelAndView = new ModelAndView("registerUser");
+        modelAndView.addObject("user", new User());
+        return modelAndView;
 
     }
 
@@ -38,11 +39,6 @@ public class RegisterController {
         }
 
         return "redirect:/";
-    }
-
-    @ModelAttribute(value = "User")
-    public User getUserInstance() {
-        return new User();
     }
 
 }

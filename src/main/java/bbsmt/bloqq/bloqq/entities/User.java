@@ -5,7 +5,7 @@ import bbsmt.bloqq.bloqq.Utils.UserUtils;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
 
 
