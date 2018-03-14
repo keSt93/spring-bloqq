@@ -11,35 +11,57 @@ main {
   padding: 2rem;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-  transition: transform .5s;
+  transition: box-shadow .3s;
   margin-bottom: 2rem; }
   .bloqqPost__container:hover {
-    transform: scale(1.01); }
+    box-shadow: 0px 0px 7px black; }
   .bloqqPost__container .bloqqPost__container-headline {
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    font-size: 1.5rem; }
+  .bloqqPost__container .bloqqpost__container-headline_link {
+    color: black; }
+  .bloqqPost__container .bloqqPost__container-date {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5); }
+  .bloqqPost__container.bloqqPost__multiple {
+    margin-left: .5rem;
+    margin-right: .5rem; }
 
 .bloqqPost__detailbox {
   border: 1px solid rgba(155, 155, 155, 0.5);
   padding: 2rem;
   border-radius: 5px; }
 
-nav {
-  padding: 0 1rem !important;
-  background-color: #494949; }
+.pagination li {
+  margin: .3rem; }
 
-.navbar-nav .nav-item {
-  background-color: #098ec6;
-  transform: skew(-15deg);
-  padding: .5rem;
-  transition: transform .5s; }
-  .navbar-nav .nav-item.active, .navbar-nav .nav-item:hover {
-    background-color: #087dae; }
-  .navbar-nav .nav-item:hover {
-    transform: skew(-15deg) scale(1.05); }
-  .navbar-nav .nav-item:hover .nav-link {
-    color: white; }
-  .navbar-nav .nav-item .nav-link {
-    color: white;
-    transform: skew(15deg); }
+nav {
+  background-color: #494949; }
+  @media (max-width: 767px) {
+    nav {
+      padding: 0 0 !important; } }
+  @media (min-width: 768px) {
+    nav {
+      padding: 0 1rem !important; } }
+  nav .navbar-nav .nav-item {
+    background-color: #098ec6;
+    padding: .5rem;
+    transition: all .3s; }
+    @media (min-width: 768px) {
+      nav .navbar-nav .nav-item {
+        transform: skew(-15deg); } }
+    nav .navbar-nav .nav-item.active, nav .navbar-nav .nav-item:hover {
+      background-color: #087dae; }
+    @media (min-width: 768px) {
+      nav .navbar-nav .nav-item:hover {
+        transform: skew(-15deg) scale(1.15);
+        z-index: 1337; } }
+    nav .navbar-nav .nav-item:hover .nav-link {
+      color: white; }
+    nav .navbar-nav .nav-item .nav-link {
+      color: white; }
+      @media (min-width: 768px) {
+        nav .navbar-nav .nav-item .nav-link {
+          transform: skew(15deg); } }
 
 /*# sourceMappingURL=../../../../target/style.css.map */

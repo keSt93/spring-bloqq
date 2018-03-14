@@ -6,50 +6,41 @@
 
 <main role="main" class="container">
     <div class="row">
-
-        <div class="col-md-8 bloqqPost__container" th:each="bloqqpost : ${bloqqlist}">
-            <span class="bloqqPost__container-date" th:text="${bloqqpost.createDate}"></span>
+        <div class="col-md-5 bloqqPost__container bloqqPost__multiple" th:each="bloqqpost : ${bloqqlist}">
+            <span class="bloqqPost__container-date" th:text="${#dates.format(bloqqpost.createDate, 'dd. MMMM yyyy')}"></span>
             <span class="bloqqPost__container-author"></span>
-            <h1 class="bloqqPost__container-headline" th:text="${bloqqpost.titel}"></h1>
+            <a class="bloqqpost__container-headline_link" th:href="@{'./id/' + ${bloqqpost.id}}">
+                <h1 class="bloqqPost__container-headline" th:text="${bloqqpost.titel}"></h1>
+            </a>
             <div class="bloqqPost__container-text__container" th:text="${#strings.abbreviate(bloqqpost.content,255)}"></div>
-            <a class="bloqqPost__container-more_button" th:href="@{'./bp/id/' + ${bloqqpost.id}}"> Mehr lesen...</a>
+            <a class="bloqqPost__container-more_button" th:href="@{'./id/' + ${bloqqpost.id}}"> Mehr lesen...</a>
         </div>
 
     </div>
-</main>
 
-<div class="row">
-    <div th:if="${bloqqlist.totalPages != 1}"
-         class="form-group col-md-11 pagination-centered">
-        <ul class="pagination">
-            <li th:class="${bloqqlist.number == 0} ? disabled"><a
-                    class="pageLink"
-                    th:href="@{./(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
-            </li>
-            <li th:class="${bloqqlist.number == 0} ? disabled"><a
-                    class="pageLink"
-                    th:href="@{./(pageSize=${selectedPageSize}, page=${bloqqlist.number})}">&larr;</a>
-            </li>
-            <li
-                    th:class="${bloqqlist.number == (page - 1)} ? 'active pointer-disabled'"
-                    th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-                <a class="pageLink"
-                   th:href="@{./(pageSize=${selectedPageSize}, page=${page})}"
-                   th:text="${page}"></a>
-            </li>
-            <li
-                    th:class="${bloqqlist.number + 1 == bloqqlist.totalPages} ? disabled">
-                <a class="pageLink"
-                   th:href="@{./(pageSize=${selectedPageSize}, page=${bloqqlist.number + 2})}">&rarr;</a>
-            </li>
-            <li
-                    th:class="${bloqqlist.number + 1 == bloqqlist.totalPages} ? disabled">
-                <a class="pageLink"
-                   th:href="@{./(pageSize=${selectedPageSize}, page=${bloqqlist.totalPages})}">&raquo;</a>
-            </li>
-        </ul>
+    <div class="row">
+        <div th:if="${bloqqlist.totalPages != 1}"
+             class="form-group col-md-11 pagination-centered">
+            <ul class="pagination">
+                <li th:class="${bloqqlist.number == 0} ? disabled">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+                </li>
+                <li th:class="${bloqqlist.number == 0} ? disabled">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${bloqqlist.number})}">&larr;</a>
+                </li>
+                <li th:class="${bloqqlist.number == (page - 1)} ? 'active pointer-disabled'" th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a>
+                </li>
+                <li  th:class="${bloqqlist.number + 1 == bloqqlist.totalPages} ? disabled">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${bloqqlist.number + 2})}">&rarr;</a>
+                </li>
+                <li th:class="${bloqqlist.number + 1 == bloqqlist.totalPages} ? disabled">
+                    <a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${bloqqlist.totalPages})}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+</main>
 
 <footer th:include="/fragments/footer :: footer"/>
 <script th:inline="javascript">
@@ -60,7 +51,7 @@
 
     function changePageAndSize() {
         $('#pageSizeSelect').change(function(evt) {
-            window.location.replace("/?pageSize=" + this.value + "&page=1");
+            window.location.replace("./?pageSize=" + this.value + "&page=1");
         });
     }
     /*]]>*/

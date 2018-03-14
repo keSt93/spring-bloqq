@@ -18,8 +18,8 @@ public class BloqqPostController {
 
     private static final int BUTTONS_TO_SHOW = 3;
     private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 5;
-    private static final int[] PAGE_SIZES = { 5,10,20 };
+    private static final int INITIAL_PAGE_SIZE = 4;
+    private static final int[] PAGE_SIZES = { 4,8,12 };
 
     @Autowired
     private BloqqRepository bloqqRepository;
