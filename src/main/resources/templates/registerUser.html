@@ -4,14 +4,14 @@
 <body>
 <nav th:include="/fragments/navigation :: navigation"/>
 <main role="main" class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <intput th:value="${registerUser.userName}"></intput>
-        </div>
-        <div class="col-md-12">
-            <input th:value="${registerUser.password}"></input>
-        </div>
-    </div>
+
+    <h1>Neuen User registrieren</h1>
+    <!--/*@thymesVar id="user" type="bbsmt.bloqq.bloqq.entities.User"*/-->
+    <form th:action="@{/registerAction}" th:object="${user}" method="POST">
+        <input type="text" th:field="*{userName}" />
+        <input type="text" th:field="*{password}" />
+        <button type="submit">Registrieren</button>
+    </form>
 </main>
 <footer th:include="/fragments/footer :: footer"/>
 </body>
