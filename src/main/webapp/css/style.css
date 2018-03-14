@@ -64,4 +64,21 @@ nav {
         nav .navbar-nav .nav-item .nav-link {
           transform: skew(15deg); } }
 
+.carousel {
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden; }
+  .carousel:after {
+    border: 15px solid #098ec6;
+    content: "";
+    background-color: white;
+    width: 300px;
+    height: 800px;
+    position: absolute;
+    bottom: -360px;
+    right: 0;
+    transform: rotate(45deg); }
+  .carousel .carousel-item img {
+    margin-top: -40%; }
+
 /*# sourceMappingURL=../../../../target/style.css.map */
