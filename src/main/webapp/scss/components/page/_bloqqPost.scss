@@ -1,0 +1,46 @@
+.bloqqPost__container {
+  border: 1px solid rgba(155,155,155,.5);
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,.5);
+  transition: box-shadow .3s;
+  margin-bottom: 2rem;
+
+  &:hover {
+    box-shadow: 0px 0px 7px rgba(0,0,0,1);
+  }
+
+  .bloqqPost__container-headline {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  .bloqqpost__container-headline_link {
+    color: black;
+  }
+
+  .bloqqPost__container-text__container {
+
+  }
+
+  .bloqqPost__container-date {
+    font-size: 12px;
+    color: rgba(0,0,0,.5);
+  }
+
+  &.bloqqPost__multiple {
+    margin-left: .5rem;
+    margin-right: .5rem;
+  }
+}
+
+.bloqqPost__detailbox {
+  border: 1px solid rgba(155,155,155,.5);
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.pagination {
+  li {
+    margin: .3rem;
+  }
+}

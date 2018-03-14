@@ -4,8 +4,17 @@
 <body>
 <nav th:include="/fragments/navigation :: navigation"/>
 
+<div class="startPageSlider">
+    <div th:include="/htmlcomponents/slider :: carouselSlider"/>
+</div>
 <main role="main" class="container">
-
+    <div class="row">
+        <div class="col-md-4 bloqqPost__container">
+            <h2 class="startPage_showCaseBox__headline"> Last Post:</h2>
+            <h1 class="bloqqPost__container-headline" th:text="${lastBloqqPost.titel}"></h1>
+            <div class="bloqqPost__container-text__container" th:text="${lastBloqqPost.content}"></div>
+        </div>
+    </div>
 </main>
 
 <footer th:include="/fragments/footer :: footer"/>

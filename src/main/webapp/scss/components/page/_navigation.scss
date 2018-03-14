@@ -1,0 +1,43 @@
+nav {
+  @media (max-width:  767px) {
+    padding: 0 0 !important;
+  }
+
+  @media (min-width:  768px) {
+    padding: 0 1rem !important;
+  }
+  background-color: $navbar-bg-color;
+
+  .navbar-nav {
+    .nav-item {
+      background-color: $nav-bg-color;
+
+      padding: .5rem;
+      transition: all .3s;
+
+      @media (min-width:  768px) {
+        transform: skew(-15deg);
+      }
+
+      &.active, &:hover {
+        background-color: $nav-bg-color-active;
+      }
+      &:hover {
+        @media (min-width:  768px) {
+          transform: skew(-15deg) scale(1.15);
+          z-index: 1337;
+        }
+      }
+      &:hover .nav-link {
+        color: white;
+      }
+
+      .nav-link {
+        color: $nav-color;
+        @media (min-width:  768px) {
+          transform: skew(15deg);
+        }
+      }
+    }
+  }
+}
