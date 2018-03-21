@@ -33,6 +33,7 @@ public class IndexController {
         m.addObject("lastBloqqPost", bloqqRepository.findFirstByOrderByIdDesc());
         m.addObject("lastUser", user.getUserName());
         m.addObject("registered", user.getCreationDate());
+        m.addObject("userId", user.getId());
         return m;
     }
 
