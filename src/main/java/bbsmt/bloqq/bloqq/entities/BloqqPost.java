@@ -5,26 +5,30 @@ import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "BloqqPost")
+@Table(name = "bloqq_post")
 public class BloqqPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private int id;
 
     @Column
-    public String titel;
+    private String titel;
 
     @Column
-    public Date createDate;
+    private Date createDate;
 
     @Column
-    public Date updated;
+    private Date updated;
 
     @Column
-    public String content;
+    private String content;
+
+    @OneToMany(mappedBy = "kommentar")
+    private List<Kommentar> kommentare;
 
     public int getId() {
         return id;
@@ -64,5 +68,13 @@ public class BloqqPost {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public List<Kommentar> getKommentare() {
+        return kommentare;
+    }
+
+    public void setKommentare(List<Kommentar> kommentare) {
+        this.kommentare = kommentare;
     }
 }

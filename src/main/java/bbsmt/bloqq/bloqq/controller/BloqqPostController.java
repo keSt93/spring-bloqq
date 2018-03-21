@@ -1,8 +1,11 @@
 package bbsmt.bloqq.bloqq.controller;
 
 import bbsmt.bloqq.bloqq.entities.BloqqPost;
+import bbsmt.bloqq.bloqq.entities.Kommentar;
+import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.models.PageModel;
 import bbsmt.bloqq.bloqq.repository.BloqqRepository;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -24,10 +28,6 @@ public class BloqqPostController {
     @Autowired
     private BloqqRepository bloqqRepository;
 
-
-    public BloqqPostController(BloqqRepository bloqqRepository) {
-        this.bloqqRepository = bloqqRepository;
-    }
 
     @GetMapping("/all")
     public ModelAndView bloqqPosts(@RequestParam("pageSize") Optional<Integer> pageSize,
@@ -57,5 +57,22 @@ public class BloqqPostController {
 
         modelAndView.addObject("bloqqpost",bloqqRepository.findById(id));
         return modelAndView;
+    }
+
+    @PostMapping("/kommentar/{id}")
+    public String saveKommentar(Kommentar kommentar, @PathVariable int bloqqId) {
+        User user = new User();
+        //sollten eine Art Session bauen für den User, das hier ist eher pseudocode, der Teil mit dem User
+        if(StringUtils.isNotEmpty(kommentar.getKommentar())) {
+            kommentar.getBloqqId().setId(bloqqId);
+            kommentar.setKommentar(kommentar.getKommentar());
+            kommentar.setCreationDate(new Date());
+            if(user.getUserName() == null || StringUtils.isNotEmpty(user.getUserName())) {
+                kommentar.setId(-1); //wenn ein Gast postet, nehme -1 als id
+            }
+            kommentar.getUserId().setId(user.getId());
+        }
+
+        return "redirect:/id{id}";
     }
 }

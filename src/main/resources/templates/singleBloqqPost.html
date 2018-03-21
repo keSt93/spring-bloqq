@@ -18,8 +18,12 @@
                 <span> verfasst. </span>
             </div>
         </div>
-
+        <br/>
+        <textarea>Kommentar schreiben</textarea>
     </div>
+    <form th:action="@{/registerAction}" th:object="${kommentar}" method="POST">
+
+    </form>
 </main>
 <footer th:include="/fragments/footer :: footer"/>
 </body>

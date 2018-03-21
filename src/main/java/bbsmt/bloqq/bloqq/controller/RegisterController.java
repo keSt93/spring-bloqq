@@ -1,19 +1,19 @@
 package bbsmt.bloqq.bloqq.controller;
 
-import bbsmt.bloqq.bloqq.Utils.UserUtils;
+import bbsmt.bloqq.bloqq.forms.UserForm;
+import bbsmt.bloqq.bloqq.utils.UserUtils;
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class RegisterController {
@@ -22,8 +22,7 @@ public class RegisterController {
     private UserRepository userRepository;
 
     @GetMapping(value = "/register")
-    public ModelAndView showView()
-    {
+    public ModelAndView showView() {
         ModelAndView modelAndView = new ModelAndView("registerUser");
         modelAndView.addObject("user", new User());
         return modelAndView;
@@ -31,14 +30,32 @@ public class RegisterController {
     }
 
     @PostMapping(value = "/registerAction")
-    private String saveView(Model model, @ModelAttribute User user) {
+    private String saveView(User user) {
         if(StringUtils.isNotEmpty(user.getUserName()) && StringUtils.isNotEmpty(user.getPassword())) {
-            user.setUserName(user.getUserName());
-            user.setPassword(UserUtils.calcPasswordHash(user.getPassword()));
-            userRepository.save(user);
+            if(userValidator(user)) {
+                Date date = new Date();
+                user.setPassword(user.getPassword());
+                user.setUserName(user.getUserName());
+                user.setCreationDate(new Date());
+                userRepository.save(user);
+                return "redirect:/register";
+            }
+            return "redirect:/registerError ";
         }
-
-        return "redirect:/";
+        return "redirect:/register";
     }
 
+    @GetMapping(value = "/registerError")
+    private ModelAndView errorView(){
+        ModelAndView modelAndView = new ModelAndView("registerError");
+        modelAndView.addObject("error", new String());
+        return modelAndView;
+    }
+
+    private boolean userValidator(User user) {
+        if (userRepository.findUserByUserName(user.getUserName()) == null || StringUtils.isEmpty(userRepository.findUserByUserName(user.getUserName()).toString())) {
+            return true;
+        }
+        return false;
+    }
 }

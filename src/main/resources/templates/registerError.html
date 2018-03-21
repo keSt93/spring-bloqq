@@ -6,7 +6,12 @@
 <main role="main" class="container">
 
     <h1>Neuen User registrieren</h1>
-    <p style="color: red">Der Nutzername ist bereits vergeben!</p>
+    <p style="color: red">Ooops! Da ist was schief gelaufen.</p>
+    <p>Das kann folgende Gründe haben:</p>
+    <ol>Benutzername schon vergeben</ol>
+    <ol>Benutzername- oder Passwordfeld leer</ol>
+    <ol>Oder ein technischer Fehler</ol>
+    <button th:href="@{/register}">Zurück</button>
 </main>
 <footer th:include="/fragments/footer :: footer"/>
 </body>

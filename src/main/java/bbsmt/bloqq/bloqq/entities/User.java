@@ -1,8 +1,10 @@
 package bbsmt.bloqq.bloqq.entities;
 
-import bbsmt.bloqq.bloqq.Utils.UserUtils;
+import bbsmt.bloqq.bloqq.utils.UserUtils;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -13,11 +15,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(unique = true)
     private String userName;
 
     @Column
     private String password;
+
+    @Column
+    private Date creationDate;
+
+    @OneToMany(mappedBy = "kommentar")
+    List<Kommentar> kommentare;
 
 
     public int getId() {
@@ -28,7 +36,6 @@ public class User {
         this.id = id;
     }
 
-    //@Column(name = "userName")
     public String getUserName() {
         return userName;
     }
@@ -37,12 +44,27 @@ public class User {
         this.userName = userName;
     }
 
-    //@Column(name="password")
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = UserUtils.calcPasswordHash(password);
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public List<Kommentar> getKommentare() {
+        return kommentare;
+    }
+
+    public void setKommentare(List<Kommentar> kommentare) {
+        this.kommentare = kommentare;
     }
 }

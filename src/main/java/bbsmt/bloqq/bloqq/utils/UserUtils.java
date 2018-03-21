@@ -1,4 +1,4 @@
-package bbsmt.bloqq.bloqq.Utils;
+package bbsmt.bloqq.bloqq.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
