@@ -27,6 +27,8 @@ public class User {
     @OneToMany(mappedBy = "kommentar")
     List<Kommentar> kommentare;
 
+    @Column
+    private Byte[] picture;
 
     public int getId() {
         return id;
@@ -66,5 +68,13 @@ public class User {
 
     public void setKommentare(List<Kommentar> kommentare) {
         this.kommentare = kommentare;
+    }
+
+    public Byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Byte[] picture) {
+        this.picture = picture;
     }
 }
