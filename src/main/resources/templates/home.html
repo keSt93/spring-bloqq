@@ -17,7 +17,7 @@
 
         <div class="col-md-6">
             <h2 class="startPage_showCaseBox__headline">Unser neustes Mitglied: </h2>
-            <h1 class="startPage_showCaseBox__subline" th:text="${lastUser}"></h1>
+            <a th:href="@{'/user/id/' + ${userId}}" class="startPage_showCaseBox__subline" th:text="${lastUser}"></a>
             <span class="startPage_showCaseBox__registeredAt">Registriert am: </span><span class="startPage_showCaseBox__registeredDate" th:text="${registered}"></span>
         </div>
     </div>

@@ -103,7 +103,8 @@ nav {
   color: #7A7A7A; }
 
 .startPage_showCaseBox__subline {
-  font-size: 1.5rem; }
+  font-size: 1.5rem;
+  display: block; }
 
 .startPage_showCaseBox__registeredAt {
   display: inline;
