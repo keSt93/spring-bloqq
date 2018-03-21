@@ -1,6 +1,5 @@
 package bbsmt.bloqq.bloqq.controller;
 
-import bbsmt.bloqq.bloqq.forms.UserForm;
 import bbsmt.bloqq.bloqq.utils.UserUtils;
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
@@ -12,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.Date;
 
 @Controller

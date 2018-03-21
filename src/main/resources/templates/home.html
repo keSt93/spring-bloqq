@@ -9,17 +9,16 @@
 </div>
 <main role="main" class="container">
     <div class="row">
-        <div class="col-md-4 bloqqPost__container">
+        <div class="col-md-6">
             <h2 class="startPage_showCaseBox__headline"> Last Post:</h2>
-            <h1 class="bloqqPost__container-headline" th:text="${lastBloqqPost.titel}"></h1>
-            <div class="bloqqPost__container-text__container" th:text="${lastBloqqPost.content}"></div>
+            <h1 class="startPage_showCaseBox__subline" th:text="${lastBloqqPost.titel}"></h1>
+            <div class="bloqqPost__container-text__container" th:text="${#strings.abbreviate(lastBloqqPost.content, 255)}"></div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 bloqqPost__container">
+
+        <div class="col-md-6">
             <h2 class="startPage_showCaseBox__headline">Unser neustes Mitglied: </h2>
-            <h1 class="bloqqPost__container-headline" th:text="${lastUser}"></h1>
-            <p>Registriert am: </p><div class="bloqqPost__container-text__container" th:text="${registered}"></div>
+            <h1 class="startPage_showCaseBox__subline" th:text="${lastUser}"></h1>
+            <span class="startPage_showCaseBox__registeredAt">Registriert am: </span><span class="startPage_showCaseBox__registeredDate" th:text="${registered}"></span>
         </div>
     </div>
 </main>

@@ -6,7 +6,6 @@
 <main role="main" class="container">
 
     <h1>Neuen User registrieren</h1>
-    <!--/*@thymesVar id="user" type="bbsmt.bloqq.bloqq.entities.User"*/-->
     <form th:action="@{/registerAction}" th:object="${user}" method="POST">
         <p>Benutzername: </p><input type="text" th:field="*{userName}" />
         <p>Passwort: </p><input type="password" th:field="*{password}" />
