@@ -25,7 +25,7 @@ public class User {
     private Date creationDate;
 
     @OneToMany(mappedBy = "kommentar")
-    List<Kommentar> kommentare;
+    private List<Kommentar> kommentare;
 
     @Column
     private Byte[] picture;
