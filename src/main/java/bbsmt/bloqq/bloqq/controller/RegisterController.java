@@ -24,14 +24,12 @@ public class RegisterController {
         ModelAndView modelAndView = new ModelAndView("registerUser");
         modelAndView.addObject("user", new User());
         return modelAndView;
-
     }
 
     @PostMapping(value = "/registerAction")
     private String saveView(User user) {
         if(StringUtils.isNotEmpty(user.getUserName()) && StringUtils.isNotEmpty(user.getPassword())) {
             if(userValidator(user)) {
-                Date date = new Date();
                 user.setPassword(user.getPassword());
                 user.setUserName(user.getUserName());
                 user.setCreationDate(new Date());
