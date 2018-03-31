@@ -70,23 +70,16 @@ nav {
   width: 100%;
   max-height: 600px;
   overflow: hidden; }
-  .carousel:after {
-    border: 15px solid #098ec6;
-    content: "";
-    background-color: white;
-    width: 300px;
-    height: 800px;
-    position: absolute;
-    bottom: -360px;
-    right: 0;
-    transform: rotate(45deg); }
   .carousel .carousel-caption {
     backdrop-filter: blur(5px) brightness(90%);
-    width: 100%;
+    width: 50%;
     right: 0;
     left: 0;
     bottom: 0;
-    height: 200px; }
+    height: 100%;
+    display: flex !important;
+    justify-content: center;
+    flex-flow: column; }
     .carousel .carousel-caption h5 {
       text-align: left;
       margin-left: 10%;
@@ -112,5 +105,8 @@ nav {
 
 startPage_showCaseBox__registeredDate {
   display: inline; }
+
+main {
+  margin-top: 2rem !important; }
 
 /*# sourceMappingURL=../../../../target/style.css.map */

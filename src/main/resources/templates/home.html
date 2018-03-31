@@ -9,17 +9,29 @@
 </div>
 <main role="main" class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h2 class="startPage_showCaseBox__headline"> Last Post:</h2>
+        <!-- last post -->
+        <div class="col-md-4">
+            <h2 class="startPage_showCaseBox__headline">Letzter Beitrag:</h2>
             <h1 class="startPage_showCaseBox__subline" th:text="${lastBloqqPost.titel}"></h1>
             <div class="bloqqPost__container-text__container" th:text="${#strings.abbreviate(lastBloqqPost.content, 255)}"></div>
         </div>
-
-        <div class="col-md-6">
+        <!-- newest member -->
+        <div class="col-md-4">
             <h2 class="startPage_showCaseBox__headline">Unser neustes Mitglied: </h2>
             <a th:href="@{'/user/id/' + ${userId}}" class="startPage_showCaseBox__subline" th:text="${lastUser}"></a>
             <span class="startPage_showCaseBox__registeredAt">Registriert am: </span><span class="startPage_showCaseBox__registeredDate" th:text="${registered}"></span>
         </div>
+        <!-- register fast blyat -->
+        <div class="col-md-4">
+            <h2 class="startPage_showCaseBox__headline">Gründe für die Registrierung:</h2>
+            <span class="startPage_showCaseBox__reasonsForBloqq">
+                Bloqq ist Gewinner der jährlichen BloqqAwardz 2018 <br />
+                <i> "Klasse" </i> - Hans Müller, 14 <br />
+                <br />
+                <a class="btn btn-outline-info my-2 my-sm-0" th:href="@{/register}">Jetzt Registrieren</a> oder direkt zum
+                <a class="btn btn-outline-success my-2 my-sm-0">Login</a>
+            </span>
+       </div>
     </div>
 </main>
 
