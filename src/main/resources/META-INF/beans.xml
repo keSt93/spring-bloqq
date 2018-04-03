@@ -7,4 +7,15 @@
     <bean id="validator"
           class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+
+        <property name="additionalDialects">
+            <set>
+                <!-- Note the package would change to 'springsecurity3' if you are using that version -->
+                <bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect"/>
+            </set>
+        </property>
+
+    </bean>
+
 </beans>

@@ -1,26 +1,41 @@
-<div th:fragment="navigation">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <a class="navbar-brand" th:href="@{/}">bloqq</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
 
-        <div class="collapse navbar-collapse" id="navbarsDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/bp/all}">Latest Bloqqs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/user/all}">Users</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <a class="btn btn-outline-info my-2 my-sm-0" th:href="@{/register}" style="color: white; margin-right: 5px">Registrieren</a>
-                <a class="btn btn-outline-success my-2 my-sm-0" style="color: white;" >Login</a>
-            </form>
-        </div>
-    </nav>
-</div>
+    <div th:fragment="navigation">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <a class="navbar-brand" th:href="@{/}">bloqq</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/bp/all}">Latest Bloqqs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/user/all}">Users</a>
+                    </li>
+                </ul>
+
+                <!-- logged out -->
+                <form sec:authorize="!isAuthenticated()" class="form-inline my-2 my-lg-0">
+                    <a class="btn btn-outline-info my-2 my-sm-0" th:href="@{/register}" style="color: white; margin-right: 5px">Registrieren</a>
+                    <a class="btn btn-outline-success my-2 my-sm-0" style="color: white;" th:href="@{/login}" >Login</a>
+                </form>
+
+                <!-- logged in -->
+                <form sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0" style="color: white;margin: 0 1rem; ">
+                    Eingeloggt als: <span sec:authentication="name"></span>
+                    <a class="btn btn-outline-success my-2 my-sm-0" style="color: white;" th:href="@{/logout}" >Ausloggen</a>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+</html>

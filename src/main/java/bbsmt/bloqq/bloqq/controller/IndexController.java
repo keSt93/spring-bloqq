@@ -37,4 +37,9 @@ public class IndexController {
         return m;
     }
 
+    @GetMapping("/403")
+    public String error403() {
+        return "/errors/403";
+    }
+
 }

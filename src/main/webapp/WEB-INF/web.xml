@@ -6,10 +6,7 @@
          version="2.4">
 
     <display-name>Bloqq</display-name>
-    <description>
-        This is a simple web application with a source code organization
-        based on the recommendations of the Application Developer's Guide.
-    </description>
+    <description> This is Bloqq.</description>
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
