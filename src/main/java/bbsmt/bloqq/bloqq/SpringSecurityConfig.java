@@ -1,13 +1,26 @@
 package bbsmt.bloqq.bloqq;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+
 @Configuration
+@EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -33,13 +46,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
-    // create two users, admin and user
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
-                .and()
-                .withUser("admin").password("password").roles("ADMIN");
+        DriverManagerDataSource userSource = new DriverManagerDataSource();
+        userSource.setDriverClassName("com.mysql.jdbc.Driver");
+        userSource.setUrl("jdbc:mysql://localhost:3306/bloqq?useUnicode=true&amp;characterEncoding=UTF-8");
+        userSource.setUsername("root");
+        userSource.setPassword("root");
+
+        auth.jdbcAuthentication()
+                .dataSource(userSource)
+                // .passwordEncoder(new BCryptPasswordEncoder())
+                .usersByUsernameQuery("SELECT user_name, password, enabled from user where user_name=?")
+                .authoritiesByUsernameQuery("SELECT user_id, role from user_roles where user_id=(SELECT user_id from user where user_name=?)");
     }
 }

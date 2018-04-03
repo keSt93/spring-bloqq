@@ -18,6 +18,7 @@ public class RegisterController {
 
     @Autowired
     private UserRepository userRepository;
+   // private UserRolesRepository userRolesRepository;
 
     @GetMapping(value = "/register")
     public ModelAndView showView() {
@@ -33,6 +34,7 @@ public class RegisterController {
                 user.setPassword(user.getPassword());
                 user.setUserName(user.getUserName());
                 user.setCreationDate(new Date());
+                user.setEnabled(true);
                 userRepository.save(user);
                 return "redirect:/register";
             }

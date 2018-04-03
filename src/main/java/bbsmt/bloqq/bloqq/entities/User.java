@@ -1,6 +1,7 @@
 package bbsmt.bloqq.bloqq.entities;
 
 import bbsmt.bloqq.bloqq.utils.UserUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,6 +31,9 @@ public class User {
     @Column
     private Byte[] picture;
 
+    @Column
+    private Boolean enabled;
+
     public int getId() {
         return id;
     }
@@ -51,7 +55,8 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = UserUtils.calcPasswordHash(password);
+        // this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password;
     }
 
     public Date getCreationDate() {
@@ -76,5 +81,13 @@ public class User {
 
     public void setPicture(Byte[] picture) {
         this.picture = picture;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
