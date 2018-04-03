@@ -1,6 +1,8 @@
 package bbsmt.bloqq.bloqq.controller;
 
+import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,10 @@ public class UserPageController {
     public ModelAndView singleUser(@PathVariable int id){
         ModelAndView modelAndView = new ModelAndView("singleUser");
 
-        modelAndView.addObject("user",userRepository.findById(id));
+        User singleUser = new User();
+        singleUser = userRepository.findById(id);
+        modelAndView.addObject("userProfilePicture", Base64.encodeBase64String(singleUser.getPicture()));
+        modelAndView.addObject("user",userRepository.findById(id)) ;
         return modelAndView;
     }
 }

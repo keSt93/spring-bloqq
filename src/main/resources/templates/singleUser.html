@@ -7,9 +7,12 @@
 <main role="main" class="container">
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h1 class="bloqqPost__container-headline" th:text="${user.userName}"></h1>
             <span>Registriert seit: </span> <span th:text="${#dates.format(user.creationDate, 'dd. MMMM yyyy')}"></span>
+        </div>
+        <div class="col-md-4 userPage__profilePicture" >
+            <img th:src="@{'data:image/png;base64,' + ${userProfilePicture}}" />
         </div>
 
     </div>

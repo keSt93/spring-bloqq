@@ -31,7 +31,13 @@
 
                 <!-- logged in -->
                 <form sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0" style="color: white;margin: 0 1rem; ">
-                    Eingeloggt als: <span sec:authentication="name"></span>
+                    <div class="nav__profileImage__container">
+                        <img class="nav__profileImage" th:src="@{/img/defaultavatar.png}"/>
+                    </div>
+                    <div class="nav__profileDetails__Container">
+                        <span class="nav__loggedinAs"> Eingeloggt als: </span>
+                        <span class="nav__userName" sec:authentication="name"></span>
+                    </div>
                     <a class="btn btn-outline-success my-2 my-sm-0" style="color: white;" th:href="@{/logout}" >Ausloggen</a>
                 </form>
             </div>

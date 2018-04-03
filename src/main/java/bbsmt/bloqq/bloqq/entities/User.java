@@ -29,7 +29,7 @@ public class User {
     private List<Kommentar> kommentare;
 
     @Column
-    private Byte[] picture;
+    private byte[] picture;
 
     @Column
     private Boolean enabled;
@@ -75,11 +75,11 @@ public class User {
         this.kommentare = kommentare;
     }
 
-    public Byte[] getPicture() {
+    public byte[] getPicture() {
         return picture;
     }
 
-    public void setPicture(Byte[] picture) {
+    public void setPicture(byte[] picture) {
         this.picture = picture;
     }
 
