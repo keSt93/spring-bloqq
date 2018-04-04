@@ -12,7 +12,7 @@
             <span>Registriert seit: </span> <span th:text="${#dates.format(user.creationDate, 'dd. MMMM yyyy')}"></span>
         </div>
         <div class="col-md-4 userPage__profilePicture" >
-            <img th:src="@{'data:image/png;base64,' + ${userProfilePicture}}" />
+            <img th:src="@{'data:image/png;base64,' + ${user.picture}}" />
         </div>
 
     </div>

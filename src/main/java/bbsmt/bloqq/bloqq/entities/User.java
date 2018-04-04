@@ -1,6 +1,7 @@
 package bbsmt.bloqq.bloqq.entities;
 
 import bbsmt.bloqq.bloqq.utils.UserUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -75,8 +76,8 @@ public class User {
         this.kommentare = kommentare;
     }
 
-    public byte[] getPicture() {
-        return picture;
+    public String getPicture() {
+        return Base64.encodeBase64URLSafeString(picture);
     }
 
     public void setPicture(byte[] picture) {

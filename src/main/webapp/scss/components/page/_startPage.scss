@@ -44,9 +44,15 @@
   display: inline;
   font-weight: bold;
 }
-startPage_showCaseBox__registeredDate {
+.startPage_showCaseBox__registeredDate {
   display: inline;
 }
+.startPage_showCaseBox_notloggedin,
+.startPage_showCaseBox_loggedin {
+  background: #f9f7f5;
+  padding: 1rem;
+}
+
 
 main.startpage {
   margin-top: 2rem !important;

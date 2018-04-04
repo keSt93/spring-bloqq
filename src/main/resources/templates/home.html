@@ -12,6 +12,29 @@
 </div>
 <main role="main" class="container startpage">
     <div class="row">
+        <!-- register fast blyat -->
+        <div class="col-md-4 startPage_showCaseBox_notloggedin" sec:authorize="!isAuthenticated()">
+            <h2 class="startPage_showCaseBox__headline">Gründe für die Registrierung:</h2>
+            <span class="startPage_showCaseBox__reasonsForBloqq">
+                Bloqq ist Gewinner der jährlichen BloqqAwardz 2018 <br />
+                <i> "Klasse" </i> - Hans Müller, 14 <br />
+                <i>"Das beste Produkt, was jemals aus der BBSMT hervorgegangen ist"</i> - Landstreicher in Hamburg <br />
+                <br />
+                <a class="btn btn-outline-info my-2 my-sm-0" th:href="@{/register}">Jetzt Registrieren</a> oder direkt zum
+                <a class="btn btn-outline-success my-2 my-sm-0">Login</a>
+            </span>
+        </div>
+
+        <div class="col-md-4 startPage_showCaseBox_loggedin" sec:authorize="isAuthenticated()">
+            <h2 class="startPage_showCaseBox__headline">Hey, <span sec:authentication="name"></span>!</h2>
+            <span class="startPage_showCaseBox__userPanel">
+                <ul>
+                    <a href=""> <li> Zu deiner Profilseite </li> </a>
+                    <a href=""> <li> Einen neuen Beitrag schreiben </li></a>
+                    <a href=""> <li> Ausloggen </li> </a>
+                </ul>
+            </span>
+        </div>
         <!-- last post -->
         <div class="col-md-4">
             <h2 class="startPage_showCaseBox__headline">Letzter Beitrag:</h2>
@@ -23,24 +46,6 @@
             <h2 class="startPage_showCaseBox__headline">Unser neustes Mitglied: </h2>
             <a th:href="@{'/user/id/' + ${userId}}" class="startPage_showCaseBox__subline" th:text="${lastUser}"></a>
             <span class="startPage_showCaseBox__registeredAt">Registriert am: </span><span class="startPage_showCaseBox__registeredDate" th:text="${#dates.format(registered, 'dd. MMMM yyyy')}"></span>
-        </div>
-        <!-- register fast blyat -->
-        <div class="col-md-4" sec:authorize="!isAuthenticated()">
-            <h2 class="startPage_showCaseBox__headline">Gründe für die Registrierung:</h2>
-            <span class="startPage_showCaseBox__reasonsForBloqq">
-                Bloqq ist Gewinner der jährlichen BloqqAwardz 2018 <br />
-                <i> "Klasse" </i> - Hans Müller, 14 <br />
-                <br />
-                <a class="btn btn-outline-info my-2 my-sm-0" th:href="@{/register}">Jetzt Registrieren</a> oder direkt zum
-                <a class="btn btn-outline-success my-2 my-sm-0">Login</a>
-            </span>
-       </div>
-
-        <div class="col-md-4" sec:authorize="isAuthenticated()">
-            <h2 class="startPage_showCaseBox__headline">Moin, <span sec:authentication="name"></span></h2>
-            <span class="startPage_showCaseBox__userPanel">
-                was geht
-            </span>
         </div>
     </div>
 </main>

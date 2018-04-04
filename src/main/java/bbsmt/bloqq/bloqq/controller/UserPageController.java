@@ -25,9 +25,6 @@ public class UserPageController {
     public ModelAndView singleUser(@PathVariable int id){
         ModelAndView modelAndView = new ModelAndView("singleUser");
 
-        User singleUser = new User();
-        singleUser = userRepository.findById(id);
-        modelAndView.addObject("userProfilePicture", Base64.encodeBase64String(singleUser.getPicture()));
         modelAndView.addObject("user",userRepository.findById(id)) ;
         return modelAndView;
     }
