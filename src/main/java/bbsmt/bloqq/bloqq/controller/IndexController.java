@@ -1,5 +1,6 @@
 package bbsmt.bloqq.bloqq.controller;
 
+import bbsmt.bloqq.bloqq.entities.BloqqPost;
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.repository.BloqqRepository;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
@@ -28,12 +29,13 @@ public class IndexController {
 
         ModelAndView m = new ModelAndView("home");
 
-        User user = new User();
-        user = userRepository.findFirstUserByOrderByIdDesc();
-        m.addObject("lastBloqqPost", bloqqRepository.findFirstByOrderByIdDesc());
-        m.addObject("lastUser", user.getUserName());
-        m.addObject("registered", user.getCreationDate());
-        m.addObject("userId", user.getId());
+        User latestUser = userRepository.findFirstUserByOrderByIdDesc();
+        BloqqPost mostRecentPost = bloqqRepository.findFirstByOrderByIdDesc();
+        User mostRecentPostAuthor = userRepository.findById(mostRecentPost.getUser_id());
+
+        m.addObject("lastBloqqPost", mostRecentPost);
+        m.addObject("lastBloqqPostAuthor", mostRecentPostAuthor);
+        m.addObject("lastUser", latestUser);
         return m;
     }
 

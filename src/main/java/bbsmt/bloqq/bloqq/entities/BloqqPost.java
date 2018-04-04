@@ -30,6 +30,8 @@ public class BloqqPost {
     @OneToMany(mappedBy = "kommentar")
     private List<Kommentar> kommentare;
 
+    private int user_id;
+
     public int getId() {
         return id;
     }
@@ -76,5 +78,13 @@ public class BloqqPost {
 
     public void setKommentare(List<Kommentar> kommentare) {
         this.kommentare = kommentare;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

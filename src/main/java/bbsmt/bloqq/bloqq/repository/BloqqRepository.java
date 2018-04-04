@@ -13,4 +13,5 @@ public interface BloqqRepository extends PagingAndSortingRepository<BloqqPost, I
     public BloqqPost findById(int id);
 
     public BloqqPost findFirstByOrderByIdDesc();
+
 }

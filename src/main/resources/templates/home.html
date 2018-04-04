@@ -39,8 +39,8 @@
                 <!-- newest member -->
                 <div class="col-md-12">
                     <h2 class="startPage_showCaseBox__headline">Unser neustes Mitglied: </h2>
-                    <a th:href="@{'/user/id/' + ${userId}}" class="startPage_showCaseBox__subline" th:text="${lastUser}"></a>
-                    <span class="startPage_showCaseBox__registeredAt">Registriert am: </span><span class="startPage_showCaseBox__registeredDate" th:text="${#dates.format(registered, 'dd. MMMM yyyy')}"></span>
+                    <a th:href="@{'/user/id/' + ${lastUser.id}}" class="startPage_showCaseBox__subline" th:text="${lastUser.userName}"></a>
+                    <span class="startPage_showCaseBox__registeredAt">Registriert am: </span><span class="startPage_showCaseBox__registeredDate" th:text="${#dates.format(lastUser.creationDate, 'dd. MMMM yyyy')}"></span>
                 </div>
             </div>
         </div>
@@ -50,7 +50,9 @@
                 <div class="col-md-12">
                     <h2 class="startPage_showCaseBox__headline">Letzter Beitrag:</h2>
                     <h1 class="startPage_showCaseBox__subline" th:text="${lastBloqqPost.titel}"></h1>
+                    <h6>von <span th:text="${lastBloqqPostAuthor.userName}"></span></h6>
                     <div class="bloqqPost__container-text__container" th:text="${#strings.abbreviate(lastBloqqPost.content, 300)}"></div>
+                    <span th:href="@{'/bp/id/' + ${lastBloqqPost.id}}"> Mehr lesen</span>
                 </div>
             </div>
         </div>
