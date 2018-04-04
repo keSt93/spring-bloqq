@@ -47,10 +47,13 @@
 .startPage_showCaseBox__registeredDate {
   display: inline;
 }
-.startPage_showCaseBox_notloggedin,
-.startPage_showCaseBox_loggedin {
+.startPage__showCaseBox_sidebar {
   background: #f9f7f5;
   padding: 1rem;
+
+  .col-md-12 {
+    margin-bottom: 1.5rem;
+  }
 }
 
 
