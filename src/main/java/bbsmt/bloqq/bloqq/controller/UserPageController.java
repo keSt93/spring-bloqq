@@ -2,7 +2,6 @@ package bbsmt.bloqq.bloqq.controller;
 
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +21,10 @@ public class UserPageController {
     private UserRepository userRepository;
 
     @GetMapping("/id/{id}")
-    public ModelAndView singleUser(@PathVariable int id){
+    public ModelAndView singleUser(@PathVariable User id){
         ModelAndView modelAndView = new ModelAndView("singleUser");
 
-        modelAndView.addObject("user",userRepository.findById(id)) ;
+        modelAndView.addObject("user",userRepository.findById(id.getId())) ;
         return modelAndView;
     }
 }
