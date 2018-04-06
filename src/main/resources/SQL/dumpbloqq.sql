@@ -69,12 +69,22 @@ INSERT INTO `user` (`id`, `user_name`, `password`, `creation_date`, `picture`, `
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Exportiere Struktur von Tabelle bloqq.user_roles
-CREATE TABLE IF NOT EXISTS `user_roles` (
-  `user_id` int(11) NOT NULL,
-  `role` mediumtext NOT NULL,
-  PRIMARY KEY (`user_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+create table if not exists user_roles
+(
+  id      int auto_increment
+    primary key,
+  role    varchar(255) default 'NULL' null,
+  id_user int default 'NULL'          null,
+  constraint user_roles_id_uindex
+  unique (id),
+  constraint user_roles_user_id_fk
+  foreign key (id_user) references user (id)
+)
+  engine = InnoDB;
+
+create index user_roles_user_id_fk
+  on user_roles (id_user);
+
 
 -- Exportiere Daten aus Tabelle bloqq.user_roles: ~1 rows (ungefähr)
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
@@ -85,3 +95,25 @@ INSERT INTO `user_roles` (`user_id`, `role`) VALUES
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+create table if not exists tags
+(
+  id            int auto_increment
+    primary key,
+  tag           varchar(255) default 'NULL' null,
+  id_kommentar  int default 'NULL'          null,
+  id_bloqq_post int default 'NULL'          null,
+  constraint tags_id_uindex
+  unique (id),
+  constraint tags_kommentar_id_fk
+  foreign key (id_kommentar) references kommentar (id),
+  constraint tags_bloqq_post_id_fk
+  foreign key (id_bloqq_post) references bloqq_post (id)
+)
+  engine = InnoDB;
+
+create index tags_bloqq_post_id_fk
+  on tags (id_bloqq_post);
+
+create index tags_kommentar_id_fk
+  on tags (id_kommentar);
+

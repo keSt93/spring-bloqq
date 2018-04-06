@@ -2,6 +2,7 @@ package bbsmt.bloqq.bloqq.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "kommentar")
@@ -24,6 +25,17 @@ public class Kommentar {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "bloqqpostId")
     private BloqqPost bloqqId;
+
+    @OneToMany(mappedBy = "tags")
+    private List<Tags> tags;
+
+    public List<Tags> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tags> tags) {
+        this.tags = tags;
+    }
 
     public int getId() {
         return id;

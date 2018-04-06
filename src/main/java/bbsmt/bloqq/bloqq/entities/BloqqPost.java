@@ -1,8 +1,5 @@
 package bbsmt.bloqq.bloqq.entities;
 
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
-import org.springframework.context.annotation.Primary;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +27,20 @@ public class BloqqPost {
     @OneToMany(mappedBy = "kommentar")
     private List<Kommentar> kommentare;
 
-    private int user_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user")
+    private User user_id;
+
+    @OneToMany(mappedBy = "tags")
+    private List<Tags> tags;
+
+    public List<Tags> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tags> tags) {
+        this.tags = tags;
+    }
 
     public int getId() {
         return id;
@@ -80,11 +90,11 @@ public class BloqqPost {
         this.kommentare = kommentare;
     }
 
-    public int getUser_id() {
+    public User getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(User user_id) {
         this.user_id = user_id;
     }
 }
