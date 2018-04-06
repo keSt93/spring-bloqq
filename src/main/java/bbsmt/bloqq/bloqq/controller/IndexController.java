@@ -31,7 +31,7 @@ public class IndexController {
 
         User latestUser = userRepository.findFirstUserByOrderByIdDesc();
         BloqqPost mostRecentPost = bloqqRepository.findFirstByOrderByIdDesc();
-        User mostRecentPostAuthor = userRepository.findById(mostRecentPost.getUser_id());
+        User mostRecentPostAuthor = userRepository.findById(mostRecentPost.getUser_id().getId());
 
         m.addObject("lastBloqqPost", mostRecentPost);
         m.addObject("lastBloqqPostAuthor", mostRecentPostAuthor);
