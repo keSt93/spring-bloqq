@@ -28,7 +28,7 @@ public class RegisterController {
     }
 
     @PostMapping(value = "/registerAction")
-    private String saveView(User user) {
+    private String saveView(User user)  {
         if(StringUtils.isNotEmpty(user.getUserName()) && StringUtils.isNotEmpty(user.getPassword())) {
             if(userValidator(user)) {
                 user.setPassword(user.getPassword());
