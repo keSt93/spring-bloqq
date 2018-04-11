@@ -27,6 +27,9 @@ public class BloqqPost {
     @OneToMany(mappedBy = "kommentar")
     private List<Kommentar> kommentare;
 
+    @OneToMany(mappedBy = "user")
+    private List<User> user;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user")
     private User user_id;
@@ -96,5 +99,13 @@ public class BloqqPost {
 
     public void setUser_id(User user_id) {
         this.user_id = user_id;
+    }
+
+    public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
     }
 }
