@@ -64,13 +64,13 @@ public class BloqqPostController {
         User user = new User();
         //sollten eine Art Session bauen für den User, das hier ist eher pseudocode, der Teil mit dem User
         if(StringUtils.isNotEmpty(kommentar.getKommentar())) {
-            kommentar.getBloqqId().setId(bloqqId);
+            kommentar.getBloqqPost().setId(bloqqId);
             kommentar.setKommentar(kommentar.getKommentar());
             kommentar.setCreationDate(new Date());
             if(user.getUserName() == null || StringUtils.isNotEmpty(user.getUserName())) {
                 kommentar.setId(-1); //wenn ein Gast postet, nehme -1 als id
             }
-            kommentar.getUserId().setId(user.getId());
+            kommentar.getUser().setId(user.getId());
         }
 
         return "redirect:/id{id}";

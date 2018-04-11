@@ -26,9 +26,6 @@ public class User {
     @Column
     private Date creationDate;
 
-    @OneToMany(mappedBy = "kommentar")
-    private List<Kommentar> kommentare;
-
     @Column
     private byte[] picture;
 
@@ -56,7 +53,6 @@ public class User {
     }
 
     public void setPassword(String password) {
-        // this.password = new BCryptPasswordEncoder().encode(password);
         this.password = password;
     }
 
@@ -66,14 +62,6 @@ public class User {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public List<Kommentar> getKommentare() {
-        return kommentare;
-    }
-
-    public void setKommentare(List<Kommentar> kommentare) {
-        this.kommentare = kommentare;
     }
 
     public String getPicture() {

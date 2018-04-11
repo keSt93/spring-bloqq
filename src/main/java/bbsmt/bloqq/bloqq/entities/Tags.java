@@ -15,11 +15,10 @@ public class Tags {
     private String tags;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Kommentar idKommentar;
+    private Kommentar kommentar;
 
-    @ManyToOne
-    private BloqqPost idBloqqPost;
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    private BloqqPost bloqqPost;
 
     public int getId() {
         return id;
@@ -37,19 +36,19 @@ public class Tags {
         this.tags = tags;
     }
 
-    public Kommentar getIdKommentar() {
-        return idKommentar;
+    public Kommentar getKommentar() {
+        return kommentar;
     }
 
-    public void setIdKommentar(Kommentar idKommentar) {
-        this.idKommentar = idKommentar;
+    public void setKommentar(Kommentar kommentar) {
+        this.kommentar = kommentar;
     }
 
-    public BloqqPost getIdBloqqPost() {
-        return idBloqqPost;
+    public BloqqPost getBloqqPost() {
+        return bloqqPost;
     }
 
-    public void setIdBloqqPost(BloqqPost idBloqqPost) {
-        this.idBloqqPost = idBloqqPost;
+    public void setBloqqPost(BloqqPost bloqqPost) {
+        this.bloqqPost = bloqqPost;
     }
 }

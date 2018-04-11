@@ -24,25 +24,15 @@ public class BloqqPost {
     @Column
     private String content;
 
-    @OneToMany(mappedBy = "kommentar")
-    private List<Kommentar> kommentare;
-
-    @OneToMany(mappedBy = "user")
-    private List<User> user;
-
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user")
-    private User user_id;
+    private User user;
 
-    @OneToMany(mappedBy = "tags")
-    private List<Tags> tags;
-
-    public List<Tags> getTags() {
-        return tags;
+    public User getUser() {
+        return user;
     }
 
-    public void setTags(List<Tags> tags) {
-        this.tags = tags;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getId() {
@@ -85,27 +75,4 @@ public class BloqqPost {
         this.content = content;
     }
 
-    public List<Kommentar> getKommentare() {
-        return kommentare;
-    }
-
-    public void setKommentare(List<Kommentar> kommentare) {
-        this.kommentare = kommentare;
-    }
-
-    public User getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
-    }
-
-    public List<User> getUser() {
-        return user;
-    }
-
-    public void setUser(List<User> user) {
-        this.user = user;
-    }
 }

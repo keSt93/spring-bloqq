@@ -2,7 +2,6 @@ package bbsmt.bloqq.bloqq.entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "kommentar")
@@ -15,27 +14,14 @@ public class Kommentar {
     @Column
     private String kommentar;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "userId")
-    private User userId;
-
     @Column
     private Date creationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "bloqqpostId")
-    private BloqqPost bloqqId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
 
-    @OneToMany(mappedBy = "tags")
-    private List<Tags> tags;
-
-    public List<Tags> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tags> tags) {
-        this.tags = tags;
-    }
+    @ManyToOne(cascade = CascadeType.ALL)
+    private BloqqPost bloqqPost;
 
     public int getId() {
         return id;
@@ -53,12 +39,12 @@ public class Kommentar {
         this.kommentar = kommentar;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getCreationDate() {
@@ -69,11 +55,11 @@ public class Kommentar {
         this.creationDate = creationDate;
     }
 
-    public BloqqPost getBloqqId() {
-        return bloqqId;
+    public BloqqPost getBloqqPost() {
+        return bloqqPost;
     }
 
-    public void setBloqqId(BloqqPost bloqqId) {
-        this.bloqqId = bloqqId;
+    public void setBloqqPost(BloqqPost bloqqPost) {
+        this.bloqqPost = bloqqPost;
     }
 }
