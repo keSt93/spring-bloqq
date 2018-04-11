@@ -9,6 +9,10 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 
     public User findUserByUserName(String name);
 
+    public User findByUserNameIs(String name);
+
+    public User findByUserNameEquals(String name);
+
     public User save(User user);
 
     public User findFirstUserByOrderByIdDesc();
