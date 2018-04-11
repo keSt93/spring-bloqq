@@ -51,8 +51,8 @@
                     <h2 class="startPage_showCaseBox__headline">Letzter Beitrag:</h2>
                     <h1 class="startPage_showCaseBox__subline" th:text="${lastBloqqPost.titel}"></h1>
                     <h6>von <span th:text="${lastBloqqPostAuthor.userName}"></span></h6>
-                    <div class="bloqqPost__container-text__container" th:text="${#strings.abbreviate(lastBloqqPost.content, 300)}"></div>
-                    <span th:href="@{'/bp/id/' + ${lastBloqqPost.id}}"> Mehr lesen</span>
+                    <div class="bloqqPost__container-text__container" th:utext="${#strings.abbreviate(lastBloqqPost.content, 300)}"></div>
+                    <a th:href="@{'/bp/id/' + ${lastBloqqPost.id}}"> Mehr lesen</a>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
 
 <main role="main" class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <h1>Neuen Bloqqpost:</h1>
             <form th:action="@{/postbloqqAction}" th:object="${bloqqpost}" method="POST">
                 <input th:field="*{titel}" placeholder="Dein cleverer Clickbait-Titel hier" />
