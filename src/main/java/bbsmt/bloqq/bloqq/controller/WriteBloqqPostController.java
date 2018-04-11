@@ -19,6 +19,7 @@ public class WriteBloqqPostController {
 
     @Autowired
     private BloqqRepository bloqqRepository;
+    @Autowired
     private UserRepository userRepository;
 
     @GetMapping(value = "/postbloqq")
