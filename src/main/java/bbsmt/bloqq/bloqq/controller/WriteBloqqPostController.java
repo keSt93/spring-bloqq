@@ -35,7 +35,6 @@ public class WriteBloqqPostController {
             bloqqPost.setTitel(bloqqPost.getTitel());
             bloqqPost.setContent(bloqqPost.getContent());
             bloqqPost.setCreateDate(new Date());
-            System.out.println("currentuser: "+currentUser.getName());
             // TODO: UserID beim Bloqqpost mitsenden ayy
             bloqqPost.setUser(userRepository.findByUserNameEquals(currentUser.getName()));
             bloqqRepository.save(bloqqPost);
