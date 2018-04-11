@@ -16,6 +16,13 @@ nav {
   .navbar-nav {
     .nav-item {
       background-color: $nav-bg-color;
+      &.nav-green-af {
+        background-color: #34b52f;
+
+        &.active, &:hover {
+          background-color: #329a2d;
+        }
+      }
 
       padding: .5rem;
       transition: all .3s;

@@ -49,6 +49,10 @@ nav {
     background-color: #098ec6;
     padding: .5rem;
     transition: all .3s; }
+    nav .navbar-nav .nav-item.nav-green-af {
+      background-color: #34b52f; }
+      nav .navbar-nav .nav-item.nav-green-af.active, nav .navbar-nav .nav-item.nav-green-af:hover {
+        background-color: #329a2d; }
     @media (min-width: 768px) {
       nav .navbar-nav .nav-item {
         transform: skew(-15deg) scale(1.02); } }

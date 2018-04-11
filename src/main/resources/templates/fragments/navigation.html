@@ -13,13 +13,16 @@
             <div class="collapse navbar-collapse" id="navbarsDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" th:href="@{/}">Start <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/bp/all}">Latest Bloqqs</a>
+                        <a class="nav-link" th:href="@{/bp/all}">Letzte Bloqqs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user/all}">Users</a>
+                        <a class="nav-link" th:href="@{/user/all}">Nutzer</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item nav-green-af">
+                        <a class="nav-link" th:href="@{/postbloqq}">Bloqq schreiben! </a>
                     </li>
                 </ul>
 
