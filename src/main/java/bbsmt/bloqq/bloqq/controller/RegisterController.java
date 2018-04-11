@@ -1,5 +1,7 @@
 package bbsmt.bloqq.bloqq.controller;
 
+import bbsmt.bloqq.bloqq.entities.UserRoles;
+import bbsmt.bloqq.bloqq.repository.UserRolesRepository;
 import bbsmt.bloqq.bloqq.utils.UserUtils;
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
@@ -18,7 +20,9 @@ public class RegisterController {
 
     @Autowired
     private UserRepository userRepository;
-   // private UserRolesRepository userRolesRepository;
+
+    @Autowired
+    private UserRolesRepository userRolesRepository;
 
     @GetMapping(value = "/register")
     public ModelAndView showView() {
@@ -29,13 +33,17 @@ public class RegisterController {
 
     @PostMapping(value = "/registerAction")
     private String saveView(User user)  {
+        UserRoles userRoles = new UserRoles();
         if(StringUtils.isNotEmpty(user.getUserName()) && StringUtils.isNotEmpty(user.getPassword())) {
             if(userValidator(user)) {
                 user.setPassword(user.getPassword());
                 user.setUserName(user.getUserName());
                 user.setCreationDate(new Date());
                 user.setEnabled(true);
+                userRoles.setRole("ROLE_USER");
+                userRoles.setUser(user);
                 userRepository.save(user);
+                userRolesRepository.save(userRoles);
                 return "redirect:/register";
             }
             return "redirect:/registerError ";

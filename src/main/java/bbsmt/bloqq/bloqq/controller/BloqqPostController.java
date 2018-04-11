@@ -54,25 +54,9 @@ public class BloqqPostController {
     public ModelAndView singleBloqqPost(@PathVariable int id){
 
         ModelAndView modelAndView = new ModelAndView("singleBloqqPost");
-
+        modelAndView.addObject("kommentar", new Kommentar());
         modelAndView.addObject("bloqqpost",bloqqRepository.findById(id));
         return modelAndView;
     }
 
-    @PostMapping("/kommentar/{id}")
-    public String saveKommentar(Kommentar kommentar, @PathVariable int bloqqId) {
-        User user = new User();
-        //sollten eine Art Session bauen für den User, das hier ist eher pseudocode, der Teil mit dem User
-        if(StringUtils.isNotEmpty(kommentar.getKommentar())) {
-            kommentar.getBloqqPost().setId(bloqqId);
-            kommentar.setKommentar(kommentar.getKommentar());
-            kommentar.setCreationDate(new Date());
-            if(user.getUserName() == null || StringUtils.isNotEmpty(user.getUserName())) {
-                kommentar.setId(-1); //wenn ein Gast postet, nehme -1 als id
-            }
-            kommentar.getUser().setId(user.getId());
-        }
-
-        return "redirect:/id{id}";
-    }
 }
