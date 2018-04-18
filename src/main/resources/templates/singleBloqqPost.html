@@ -20,9 +20,9 @@
         </div>
         <br/>
     </div>
-    <form th:action="@{'/kommentarAction/' + ${bloqqpost.id}}" th:object="${kommentar}" method="POST">
-        <textarea th:field="*{kommentar}"></textarea>
-        <input type="submit"/>
+    <form th:action="@{'/bp/postKommentarAction/' + ${bloqqpost.id}}" th:object="${kommentarObject}" method="POST">
+        <textarea th:field="*{kommentarText}"></textarea>
+        <button type="submit">Post!</button>
     </form>
 </main>
 <footer th:include="/fragments/footer :: footer"/>

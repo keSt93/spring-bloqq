@@ -5,6 +5,8 @@ import bbsmt.bloqq.bloqq.entities.Kommentar;
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.models.PageModel;
 import bbsmt.bloqq.bloqq.repository.BloqqRepository;
+import bbsmt.bloqq.bloqq.repository.KommentarRepository;
+import bbsmt.bloqq.bloqq.repository.UserRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.Optional;
 
@@ -27,6 +30,10 @@ public class BloqqPostController {
 
     @Autowired
     private BloqqRepository bloqqRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private KommentarRepository kommentarRepository;
 
 
     @GetMapping("/all")
@@ -54,9 +61,31 @@ public class BloqqPostController {
     public ModelAndView singleBloqqPost(@PathVariable int id){
 
         ModelAndView modelAndView = new ModelAndView("singleBloqqPost");
-        modelAndView.addObject("kommentar", new Kommentar());
+        modelAndView.addObject("kommentarObject", new Kommentar());
         modelAndView.addObject("bloqqpost",bloqqRepository.findById(id));
         return modelAndView;
+    }
+
+    @PostMapping(value = "/postKommentarAction/{bloqqId}")
+    private String saveView(Kommentar kommentarObject, Principal currentUser, @PathVariable int bloqqId)  {
+        BloqqPost currBloqqPost = bloqqRepository.findById(bloqqId);
+        User currUser = userRepository.findByUserNameEquals(currentUser.getName());
+
+        if(StringUtils.isNotEmpty(kommentarObject.getKommentarText()) && currBloqqPost != null) {
+            if(currUser != null) {
+                kommentarObject.setUser(currUser);
+            } else {
+                currUser = userRepository.findById(-1);
+                kommentarObject.setUser(currUser); //wenn ein Gast postet, nehme -1 als id
+            }
+            kommentarObject.setKommentarText(kommentarObject.getKommentarText());
+            kommentarObject.setCreationDate(new Date());
+            kommentarObject.setBloqqPost(currBloqqPost);
+            kommentarRepository.save(kommentarObject);
+            return "redirect:/bp/id/"+bloqqId;
+        } else {
+            return "redirect:/";
+        }
     }
 
 }

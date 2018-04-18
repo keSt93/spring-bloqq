@@ -12,7 +12,7 @@ public class Kommentar {
     private int id;
 
     @Column
-    private String kommentar;
+    private String kommentarText;
 
     @Column
     private Date creationDate;
@@ -31,12 +31,12 @@ public class Kommentar {
         this.id = id;
     }
 
-    public String getKommentar() {
-        return kommentar;
+    public String getKommentarText() {
+        return kommentarText;
     }
 
-    public void setKommentar(String kommentar) {
-        this.kommentar = kommentar;
+    public void setKommentarText(String kommentar) {
+        this.kommentarText = kommentar;
     }
 
     public User getUser() {
