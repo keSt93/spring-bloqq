@@ -20,8 +20,8 @@
                 <span style="margin-bottom: 10px;"> verfasst. </span>
                 <span class="startPage_showCaseBox__headline" style="display: block">Mehr vom Autor: </span>
 
-                <div th:each="eintrag : ${mehrVonUserListe}">
-                    <a class="bloqqPost__moreFromAuthor__instance" th:href="@{'/bp/id/' + ${eintrag.id}}" style="display: block">
+                <div class="bloqqPost__moreFromAuthor__instance" th:each="eintrag,i : ${mehrVonUserListe}" th:unless="${i.index > 5}">
+                    <a th:href="@{'/bp/id/' + ${eintrag.id}}" style="display: block">
                         <span th:text="${eintrag.getTitel()}"></span>
                     </a>
                     <span th:text="${#dates.format(eintrag.createDate, 'dd. MMMM yyyy')}"></span>
