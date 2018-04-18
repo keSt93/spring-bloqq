@@ -23,11 +23,6 @@ import java.util.Optional;
 @RequestMapping("/bp")
 public class BloqqPostController {
 
-    private static final int BUTTONS_TO_SHOW = 3;
-    private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 4;
-    private static final int[] PAGE_SIZES = { 4,8,12 };
-
     @Autowired
     private BloqqRepository bloqqRepository;
     @Autowired
@@ -37,24 +32,11 @@ public class BloqqPostController {
 
 
     @GetMapping("/all")
-    public ModelAndView bloqqPosts(@RequestParam("pageSize") Optional<Integer> pageSize,
-                                 @RequestParam("page") Optional<Integer> page){
-
+    public ModelAndView bloqqPosts(){
         ModelAndView modelAndView = new ModelAndView("multipleBloqqPosts");
 
-        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
-        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
-        Page<BloqqPost> bloqqlist = bloqqRepository.findAll( new PageRequest(evalPage, evalPageSize));
-        PageModel pager = new PageModel(bloqqlist.getTotalPages(),bloqqlist.getNumber(),BUTTONS_TO_SHOW);
-        // add clientmodel
+        Iterable<BloqqPost> bloqqlist = bloqqRepository.findAllByOrderByCreateDateDesc();
         modelAndView.addObject("bloqqlist",bloqqlist);
-        // evaluate page size
-        modelAndView.addObject("selectedPageSize", evalPageSize);
-        // add page sizes
-        modelAndView.addObject("pageSizes", PAGE_SIZES);
-        // add pager
-        modelAndView.addObject("pager", pager);
-        //add commentz
         return modelAndView;
     }
 

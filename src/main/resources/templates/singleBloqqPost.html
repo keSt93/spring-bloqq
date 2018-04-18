@@ -16,7 +16,7 @@
                 <span> Am </span>
                 <span th:text="${#dates.format(bloqqpost.createDate, 'dd. MMMM yyyy')}"></span>
                 <span> von </span>
-                <span th:text="${bloqqpost.getUser().userName}"></span>
+                <a th:text="${bloqqpost.getUser().userName}" th:href="@{'/user/id/' + ${bloqqpost.getUser().id}}"></a>
                 <span style="margin-bottom: 10px;"> verfasst. </span>
                 <span class="startPage_showCaseBox__headline" style="display: block">Mehr vom Autor: </span>
 
@@ -44,6 +44,7 @@
         <div class="col-md-2 singleComment__userSide">
             <span class="userName" th:text="${kommentar.user.userName}"></span> </br>
             <span class="date" th:text="${#dates.format(kommentar.creationDate, 'dd. MMMM yyyy')}"></span>
+            <span class="time" th:text="${#dates.format(kommentar.creationDate, 'HH:mm')}"></span>
         </div>
         <div class="col-md-10 singleComment__textSide">
             <span class="" th:utext="${kommentar.kommentarText}"></span>
