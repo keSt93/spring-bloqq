@@ -34,7 +34,7 @@
 
                 <!-- logged in -->
                 <form sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0" style="color: white;margin: 0 1rem; ">
-                    <div class="nav__profileImage__container">
+                    <div class="nav__profileImage__container" style="display: none">
                         <img class="nav__profileImage" th:src="@{/img/defaultavatar.png}"/>
                     </div>
                     <div class="nav__profileDetails__Container">

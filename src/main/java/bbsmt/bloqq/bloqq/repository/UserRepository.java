@@ -16,4 +16,6 @@ public interface UserRepository extends CrudRepository<User, Integer>{
     public User findFirstUserByOrderByIdDesc();
 
     public User findById(int id);
+
+    public Iterable<User> findAllByOrderByCreationDateDesc();
 }
