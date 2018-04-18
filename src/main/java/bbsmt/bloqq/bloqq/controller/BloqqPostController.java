@@ -49,7 +49,7 @@ public class BloqqPostController {
         modelAndView.addObject("kommentarObject", new Kommentar());
         modelAndView.addObject("bloqqpost", currentBloqqPost);
         modelAndView.addObject("kommentarListe", kommentarRepository.getAllByBloqqPostOrderByCreationDateDesc(currentBloqqPost));
-        modelAndView.addObject("mehrVonUserListe", bloqqRepository.findAllByUserOrderByCreateDateDesc(currentUser));
+        modelAndView.addObject("mehrVonUserListe", bloqqRepository.findAllByUserAndIdNotOrderByCreateDateDesc(currentUser,currentBloqqPost.getId()));
         return modelAndView;
     }
 
