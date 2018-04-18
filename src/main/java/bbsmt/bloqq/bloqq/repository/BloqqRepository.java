@@ -2,6 +2,7 @@ package bbsmt.bloqq.bloqq.repository;
 
 
 import bbsmt.bloqq.bloqq.entities.BloqqPost;
+import bbsmt.bloqq.bloqq.entities.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -13,5 +14,7 @@ public interface BloqqRepository extends PagingAndSortingRepository<BloqqPost, I
     public BloqqPost findById(int id);
 
     public BloqqPost findFirstByOrderByIdDesc();
+
+    public Iterable<BloqqPost> findAllByUserOrderByCreateDateDesc(User user);
 
 }

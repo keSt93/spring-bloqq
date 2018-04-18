@@ -135,4 +135,18 @@ nav {
 main.startpage {
   margin-top: 2rem !important; }
 
+.singleComment__container {
+  border: 1px solid rgba(155, 155, 155, 0.5);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  margin-top: 1rem; }
+  .singleComment__container .singleComment__userSide {
+    background: rgba(155, 155, 155, 0.05);
+    padding: .5rem; }
+    .singleComment__container .singleComment__userSide .userName {
+      font-weight: bold;
+      display: block; }
+  .singleComment__container .singleComment__textSide {
+    padding: .5rem; }
+
 /*# sourceMappingURL=../../../../target/style.css.map */

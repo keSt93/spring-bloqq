@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head lang="en" th:include="/fragments/header :: head">
 <body>
 <nav th:include="/fragments/navigation :: navigation"/>
@@ -15,15 +15,42 @@
             <div class="bloqqPost__detailbox">
                 <span> Am </span>
                 <span th:text="${#dates.format(bloqqpost.createDate, 'dd. MMMM yyyy')}"></span>
+                <span> von </span>
+                <span th:text="${bloqqpost.getUser().userName}"></span>
                 <span> verfasst. </span>
+                </br>
+                <span>Mehr von </span>
+                <span th:text="${bloqqpost.getUser().userName}"></span>
+
+                <span th:each="eintrag : ${mehrVonUserListe}">
+                    <a th:href="@{'/bp/id/' + ${eintrag.id}}" style="display: block">
+                        <span th:text="${eintrag.getTitel()}"></span>
+                    </a>
+
+                </span>
             </div>
         </div>
         <br/>
     </div>
-    <form th:action="@{'/bp/postKommentarAction/' + ${bloqqpost.id}}" th:object="${kommentarObject}" method="POST">
-        <textarea th:field="*{kommentarText}"></textarea>
-        <button type="submit">Post!</button>
-    </form>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form th:action="@{'/bp/postKommentarAction/' + ${bloqqpost.id}}" th:object="${kommentarObject}" method="POST">
+                <textarea th:field="*{kommentarText}"></textarea>
+                <button type="submit">Post!</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row singleComment__container"  th:each="kommentar : ${kommentarListe}">
+        <div class="col-md-2 singleComment__userSide">
+            <span class="userName" th:text="${kommentar.user.userName}"></span> </br>
+            <span class="date" th:text="${#dates.format(kommentar.creationDate, 'dd. MMMM yyyy')}"></span>
+        </div>
+        <div class="col-md-10 singleComment__textSide">
+            <span class="" th:utext="${kommentar.kommentarText}"></span>
+        </div>
+    </div>
 </main>
 <footer th:include="/fragments/footer :: footer"/>
 </body>

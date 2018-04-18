@@ -54,30 +54,37 @@ public class BloqqPostController {
         modelAndView.addObject("pageSizes", PAGE_SIZES);
         // add pager
         modelAndView.addObject("pager", pager);
+        //add commentz
         return modelAndView;
     }
 
     @GetMapping("/id/{id}")
     public ModelAndView singleBloqqPost(@PathVariable int id){
 
+        BloqqPost currentBloqqPost = bloqqRepository.findById(id);
+        User currentUser = currentBloqqPost.getUser();
         ModelAndView modelAndView = new ModelAndView("singleBloqqPost");
         modelAndView.addObject("kommentarObject", new Kommentar());
-        modelAndView.addObject("bloqqpost",bloqqRepository.findById(id));
+        modelAndView.addObject("bloqqpost", currentBloqqPost);
+        modelAndView.addObject("kommentarListe", kommentarRepository.getAllByBloqqPostOrderByCreationDateDesc(currentBloqqPost));
+        modelAndView.addObject("mehrVonUserListe", bloqqRepository.findAllByUserOrderByCreateDateDesc(currentUser));
         return modelAndView;
     }
 
     @PostMapping(value = "/postKommentarAction/{bloqqId}")
     private String saveView(Kommentar kommentarObject, Principal currentUser, @PathVariable int bloqqId)  {
         BloqqPost currBloqqPost = bloqqRepository.findById(bloqqId);
-        User currUser = userRepository.findByUserNameEquals(currentUser.getName());
+        User currUser;
+        try {
+            currUser = userRepository.findByUserNameEquals(currentUser.getName());
+        } catch (Exception x) {
+            currUser = userRepository.findById(-1);
+            System.out.print("User not found.");
+        }
+
 
         if(StringUtils.isNotEmpty(kommentarObject.getKommentarText()) && currBloqqPost != null) {
-            if(currUser != null) {
-                kommentarObject.setUser(currUser);
-            } else {
-                currUser = userRepository.findById(-1);
-                kommentarObject.setUser(currUser); //wenn ein Gast postet, nehme -1 als id
-            }
+            kommentarObject.setUser(currUser);
             kommentarObject.setKommentarText(kommentarObject.getKommentarText());
             kommentarObject.setCreationDate(new Date());
             kommentarObject.setBloqqPost(currBloqqPost);
