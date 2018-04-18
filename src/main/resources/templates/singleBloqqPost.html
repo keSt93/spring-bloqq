@@ -17,17 +17,15 @@
                 <span th:text="${#dates.format(bloqqpost.createDate, 'dd. MMMM yyyy')}"></span>
                 <span> von </span>
                 <span th:text="${bloqqpost.getUser().userName}"></span>
-                <span> verfasst. </span>
-                </br>
-                <span>Mehr von </span>
-                <span th:text="${bloqqpost.getUser().userName}"></span>
+                <span style="margin-bottom: 10px;"> verfasst. </span>
+                <span class="startPage_showCaseBox__headline" style="display: block">Mehr vom Autor: </span>
 
-                <span th:each="eintrag : ${mehrVonUserListe}">
-                    <a th:href="@{'/bp/id/' + ${eintrag.id}}" style="display: block">
+                <div th:each="eintrag : ${mehrVonUserListe}">
+                    <a class="bloqqPost__moreFromAuthor__instance" th:href="@{'/bp/id/' + ${eintrag.id}}" style="display: block">
                         <span th:text="${eintrag.getTitel()}"></span>
                     </a>
-
-                </span>
+                    <span th:text="${#dates.format(eintrag.createDate, 'dd. MMMM yyyy')}"></span>
+                </div>
             </div>
         </div>
         <br/>

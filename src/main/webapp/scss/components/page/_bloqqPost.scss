@@ -37,6 +37,13 @@
   border: 1px solid rgba(155,155,155,.5);
   padding: 2rem;
   border-radius: 5px;
+
+  .bloqqPost__moreFromAuthor__instance {
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(155,155,155,.5);
+  }
 }
 
 .pagination {
