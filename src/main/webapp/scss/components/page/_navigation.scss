@@ -1,4 +1,8 @@
 nav {
+  backdrop-filter: blur(10px);
+  background-color: rgba($navbar-bg-color,.8);
+  z-index: 13377331;
+  position: relative;
 
   @media (max-width:  767px) {
     padding: 0 0 !important;
@@ -7,10 +11,9 @@ nav {
   @media (min-width:  768px) {
     padding: 0 1rem !important;
   }
-  background-color: rgba($navbar-bg-color,.8);
 
   .navbar {
-    backdrop-filter: blur(10px);
+    height: 54px;
   }
 
   .navbar-nav {

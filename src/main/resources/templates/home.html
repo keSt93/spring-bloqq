@@ -29,9 +29,8 @@
                     <h2 class="startPage_showCaseBox__headline">Hey, <span sec:authentication="name"></span>!</h2>
                     <span class="startPage_showCaseBox__userPanel">
                         <ul>
-                            <a href=""> <li> Zu deiner Profilseite </li> </a>
-                            <a href=""> <li> Einen neuen Beitrag schreiben </li></a>
-                            <a href=""> <li> Ausloggen </li> </a>
+                            <a th:href="@{/postbloqq}"> <li> Einen neuen Beitrag schreiben </li></a>
+                            <a th:href="@{/logout}"> <li> Ausloggen </li> </a>
                         </ul>
                     </span>
                 </div>

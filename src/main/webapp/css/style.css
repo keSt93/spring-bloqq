@@ -47,7 +47,10 @@ footer {
   margin: .3rem; }
 
 nav {
-  background-color: rgba(73, 73, 73, 0.8); }
+  backdrop-filter: blur(10px);
+  background-color: rgba(73, 73, 73, 0.8);
+  z-index: 13377331;
+  position: relative; }
   @media (max-width: 767px) {
     nav {
       padding: 0 0 !important; } }
@@ -55,7 +58,7 @@ nav {
     nav {
       padding: 0 1rem !important; } }
   nav .navbar {
-    backdrop-filter: blur(10px); }
+    height: 54px; }
   nav .navbar-nav .nav-item {
     background-color: #098ec6;
     padding: .5rem;
@@ -101,6 +104,9 @@ nav {
   width: 100%;
   max-height: 600px;
   overflow: hidden; }
+  @media (min-width: 768px) {
+    .carousel {
+      margin-top: -54px; } }
   .carousel .carousel-caption {
     backdrop-filter: blur(5px) brightness(90%);
     width: 50%;
@@ -156,6 +162,8 @@ main.startpage {
     padding: .5rem; }
     .singleComment__container .singleComment__userSide .userName {
       font-weight: bold;
+      display: block; }
+    .singleComment__container .singleComment__userSide .date, .singleComment__container .singleComment__userSide .time {
       display: block; }
   .singleComment__container .singleComment__textSide {
     padding: .5rem; }
