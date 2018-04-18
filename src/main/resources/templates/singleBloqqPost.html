@@ -41,7 +41,8 @@
     </div>
 
     <div class="row singleComment__container"  th:each="kommentar : ${kommentarListe}">
-        <div class="col-md-2 singleComment__userSide">
+        <div class="col-md-2 singleComment__userSide"
+             th:classappend="${kommentar.user.id == bloqqpost.getUser().id}">
             <span class="userName" th:text="${kommentar.user.userName}"></span> </br>
             <span class="date" th:text="${#dates.format(kommentar.creationDate, 'dd. MMMM yyyy')}"></span>
             <span class="time" th:text="${#dates.format(kommentar.creationDate, 'HH:mm')}"></span>

@@ -1,11 +1,17 @@
 .singleComment__container {
   border: 1px solid rgba(155,155,155,.5);
-  box-shadow: 0px 0px 5px rgba(0,0,0,.5);
   border-radius: 5px;
   margin-top: 1rem;
   .singleComment__userSide {
-    background: rgba(155,155,155,.05);
+
     padding: .5rem;
+
+    &.false {
+      background: rgba(155,155,155,.05);
+    }
+    &.true {
+      background: rgba(164, 222, 255, 0.42);
+    }
     .userName {
       font-weight: bold;
       display: block;

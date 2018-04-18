@@ -30,11 +30,8 @@ public class IndexController {
         ModelAndView m = new ModelAndView("home");
 
         User latestUser = userRepository.findFirstUserByOrderByIdDesc();
-        BloqqPost mostRecentPost = bloqqRepository.findFirstByOrderByIdDesc();
-        User mostRecentPostAuthor = userRepository.findById(mostRecentPost.getUser().getId());
-
+        Iterable<BloqqPost> mostRecentPost = bloqqRepository.findFirst2ByOrderByIdDesc();
         m.addObject("lastBloqqPost", mostRecentPost);
-        m.addObject("lastBloqqPostAuthor", mostRecentPostAuthor);
         m.addObject("lastUser", latestUser);
         return m;
     }

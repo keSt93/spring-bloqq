@@ -2,7 +2,12 @@
 
   &:not(.bloqqPost__multiple) {
     border: 1px solid rgba(155,155,155,.5);
-    box-shadow: 0px 0px 5px rgba(0,0,0,.5);
+  }
+  &.bloqqPost__multiple {
+    border: 1px solid transparent;
+    &:hover {
+      border: 1px solid rgba(155,155,155,.5);
+    }
   }
 
   transition: all .3s;
@@ -10,20 +15,12 @@
   padding: 2rem;
   margin-bottom: 2rem;
 
-  &:hover {
-    box-shadow: 0px 0px 7px rgba(0,0,0,1);
-  }
-
   .bloqqPost__container-headline {
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
   .bloqqpost__container-headline_link {
     color: black;
-  }
-
-  .bloqqPost__container-text__container {
-
   }
 
   .bloqqPost__container-date {
