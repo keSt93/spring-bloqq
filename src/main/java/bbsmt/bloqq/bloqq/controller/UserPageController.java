@@ -3,6 +3,7 @@ package bbsmt.bloqq.bloqq.controller;
 import bbsmt.bloqq.bloqq.entities.BloqqPost;
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.models.PageModel;
+import bbsmt.bloqq.bloqq.repository.BloqqRepository;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,15 @@ public class UserPageController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private BloqqRepository bloqqRepository;
 
     @GetMapping("/id/{id}")
     public ModelAndView singleUser(@PathVariable User id){
         ModelAndView modelAndView = new ModelAndView("singleUser");
 
-        modelAndView.addObject("user",userRepository.findById(id.getId())) ;
+        modelAndView.addObject("user",userRepository.findById(id.getId()));
+        modelAndView.addObject("userPosts", bloqqRepository.findAllByUserOrderByCreateDateDesc(id));
         return modelAndView;
     }
 
