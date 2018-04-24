@@ -62,6 +62,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .dataSource(userSource)
                 // .passwordEncoder(new BCryptPasswordEncoder())
                 .usersByUsernameQuery("SELECT user_name, password, enabled from user where user_name=?")
-                .authoritiesByUsernameQuery("SELECT id_user, role from user_roles where id_user=(SELECT id from user where user_name=?)");
+                .authoritiesByUsernameQuery("SELECT user_id, role from user_roles where user_id=(SELECT id from user where user_name=?)");
     }
 }
