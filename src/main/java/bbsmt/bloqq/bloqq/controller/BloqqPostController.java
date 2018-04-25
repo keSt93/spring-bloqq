@@ -2,10 +2,12 @@ package bbsmt.bloqq.bloqq.controller;
 
 import bbsmt.bloqq.bloqq.entities.BloqqPost;
 import bbsmt.bloqq.bloqq.entities.Kommentar;
+import bbsmt.bloqq.bloqq.entities.Tags;
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.models.PageModel;
 import bbsmt.bloqq.bloqq.repository.BloqqRepository;
 import bbsmt.bloqq.bloqq.repository.KommentarRepository;
+import bbsmt.bloqq.bloqq.repository.TagRepository;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class BloqqPostController {
     @Autowired
     private KommentarRepository kommentarRepository;
 
+    @Autowired
+    private TagRepository tagRepository;
+
 
     @GetMapping("/all")
     public ModelAndView bloqqPosts(){
@@ -45,10 +50,17 @@ public class BloqqPostController {
 
         BloqqPost currentBloqqPost = bloqqRepository.findById(id);
         User currentUser = currentBloqqPost.getUser();
+        Iterable<Kommentar> kommentarList = kommentarRepository.getAllByBloqqPost(currentBloqqPost);
+
+
         ModelAndView modelAndView = new ModelAndView("singleBloqqPost");
         modelAndView.addObject("kommentarObject", new Kommentar());
+        modelAndView.addObject("tagObject", new Tags());
         modelAndView.addObject("bloqqpost", currentBloqqPost);
         modelAndView.addObject("kommentarListe", kommentarRepository.getAllByBloqqPostOrderByCreationDateDesc(currentBloqqPost));
+        for(Kommentar current : kommentarList) {
+            modelAndView.addObject("tagsKommentare", tagRepository.getAllByKommentar(current));
+        }
         modelAndView.addObject("mehrVonUserListe", bloqqRepository.findAllByUserAndIdNotOrderByCreateDateDesc(currentUser,currentBloqqPost.getId()));
         return modelAndView;
     }
@@ -76,5 +88,20 @@ public class BloqqPostController {
             return "redirect:/";
         }
     }
+
+    @PostMapping(value = "/postTagKommentarAction/{bloqqId}")
+    private String saveTag(Tags tagsObject, @PathVariable int bloqqId) {
+        BloqqPost currentPost = bloqqRepository.findById(bloqqId);
+        Kommentar kommentar = kommentarRepository.getKommentarByBloqqPost(currentPost);
+
+        if(kommentar != null && currentPost != null) {
+            tagsObject.setTags(tagsObject.getTags());
+            tagsObject.setKommentar(kommentar);
+            return "redirect:/bp/id/" + bloqqId;
+        } else {
+            return "redirect:/";
+        }
+    }
+
 
 }

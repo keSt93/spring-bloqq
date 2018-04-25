@@ -12,4 +12,7 @@ public interface KommentarRepository extends CrudRepository<Kommentar, Integer> 
 
     public Iterable<Kommentar> getAllByBloqqPostOrderByCreationDateDesc(BloqqPost bloqqPost);
 
+    public Kommentar getKommentarByBloqqPost(BloqqPost bloqqPost);
+
+    public Iterable<Kommentar> getAllByBloqqPost(BloqqPost bloqqPost);
 }

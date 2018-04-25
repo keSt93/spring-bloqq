@@ -4,6 +4,13 @@
 <body>
 <nav th:include="/fragments/navigation :: navigation"/>
 <main role="main" class="container">
+
+    <script>
+        submitForms = function(){
+            document.getElementById("submitTags").submit();
+            document.getElementById("submitKommentar").submit();
+        }
+    </script>
     <div class="row">
 
         <div class="col-md-8 bloqqPost__container">
@@ -31,14 +38,26 @@
         <br/>
     </div>
 
+    <p>Kommentar schreiben:</p>
+    <br />
     <div class="row">
         <div class="col-md-12">
-            <form th:action="@{'/bp/postKommentarAction/' + ${bloqqpost.id}}" th:object="${kommentarObject}" method="POST">
+            <form id="submitTags" th:action="@{'/bp/post/' + ${bloqqpost.id}}" th:object="${kommentarObject}" method="POST">
                 <textarea th:field="*{kommentarText}"></textarea>
-                <button type="submit">Post!</button>
             </form>
         </div>
     </div>
+    <br />
+    <p>Tags hinzufügen für den Kommentar: </p>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <form id="submitKommentar" th:action="@{'/bp/postTagKommentarAction/' + ${bloqqpost.id}}" th:object="${tagObject}" method="POST">
+                <input type="text" th:field="*{tags}"></input>
+            </form>
+        </div>
+    </div>
+    <input type="button" value="Post!" onclick="submitForms()" />
 
     <div class="row singleComment__container"  th:each="kommentar : ${kommentarListe}">
         <div class="col-md-2 singleComment__userSide"
@@ -49,6 +68,9 @@
         </div>
         <div class="col-md-10 singleComment__textSide">
             <span class="" th:utext="${kommentar.kommentarText}"></span>
+            <div class="tags" th:each="tags : ${tagsKommentare}" >
+                <span class="tag" th:utext="${tags.tags}"></span>
+            </div>
         </div>
     </div>
 </main>
