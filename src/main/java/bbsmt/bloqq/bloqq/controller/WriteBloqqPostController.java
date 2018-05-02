@@ -44,10 +44,14 @@ public class WriteBloqqPostController {
             //tag stuff
             Tags potentialTag = tagRepository.findByTagnameEquals(bloqqPost.getTag().getTagname());
             if(potentialTag == null) {
-               Tags newTag = new Tags();
-               newTag.setTagname(bloqqPost.getTag().getTagname());
-               potentialTag = newTag;
-               tagRepository.save(potentialTag);
+                if(bloqqPost.getTag().getTagname() != "") {
+                    Tags newTag = new Tags();
+                    newTag.setTagname(bloqqPost.getTag().getTagname());
+                    potentialTag = newTag;
+                    tagRepository.save(potentialTag);
+                } else {
+                    potentialTag = tagRepository.findOne(-1);
+                }
             }
             bloqqPost.setTag(potentialTag);
 
