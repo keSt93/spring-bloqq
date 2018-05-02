@@ -12,13 +12,7 @@ public class Tags {
     private int id;
 
     @Column
-    private String tags;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Kommentar kommentar;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private BloqqPost bloqqPost;
+    private String tagname;
 
     public int getId() {
         return id;
@@ -28,27 +22,12 @@ public class Tags {
         this.id = id;
     }
 
-    public String getTags() {
-        return tags;
+    public String getTagname() {
+        return tagname;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setTagname(String tags) {
+        this.tagname = tags;
     }
 
-    public Kommentar getKommentar() {
-        return kommentar;
-    }
-
-    public void setKommentar(Kommentar kommentar) {
-        this.kommentar = kommentar;
-    }
-
-    public BloqqPost getBloqqPost() {
-        return bloqqPost;
-    }
-
-    public void setBloqqPost(BloqqPost bloqqPost) {
-        this.bloqqPost = bloqqPost;
-    }
 }

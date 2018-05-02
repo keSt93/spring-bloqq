@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TagRepository extends PagingAndSortingRepository<Tags, Integer> {
 
-    public Iterable<Tags> getAllByKommentar(Kommentar kommentar);
+    public Tags findByTagnameEquals(String tagname);
 
 }

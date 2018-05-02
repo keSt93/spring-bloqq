@@ -1,8 +1,10 @@
 package bbsmt.bloqq.bloqq.controller;
 
 import bbsmt.bloqq.bloqq.entities.BloqqPost;
+import bbsmt.bloqq.bloqq.entities.Tags;
 import bbsmt.bloqq.bloqq.entities.User;
 import bbsmt.bloqq.bloqq.repository.BloqqRepository;
+import bbsmt.bloqq.bloqq.repository.TagRepository;
 import bbsmt.bloqq.bloqq.repository.UserRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class WriteBloqqPostController {
     private BloqqRepository bloqqRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TagRepository tagRepository;
 
     @GetMapping(value = "/postbloqq")
     public ModelAndView showView() {
@@ -36,6 +40,17 @@ public class WriteBloqqPostController {
             bloqqPost.setContent(bloqqPost.getContent());
             bloqqPost.setCreateDate(new Date());
             bloqqPost.setUser(userRepository.findByUserNameEquals(currentUser.getName()));
+
+            //tag stuff
+            Tags potentialTag = tagRepository.findByTagnameEquals(bloqqPost.getTag().getTagname());
+            if(potentialTag == null) {
+               Tags newTag = new Tags();
+               newTag.setTagname(bloqqPost.getTag().getTagname());
+               potentialTag = newTag;
+               tagRepository.save(potentialTag);
+            }
+            bloqqPost.setTag(potentialTag);
+
             bloqqRepository.save(bloqqPost);
             return "redirect:/";
         } else {

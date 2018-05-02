@@ -13,6 +13,8 @@
             <form th:action="@{/postbloqqAction}" th:object="${bloqqpost}" method="POST">
                 <input th:field="*{titel}" placeholder="Dein cleverer Clickbait-Titel hier" />
                 <textarea th:field="*{content}" placeholder="uhhhh..."></textarea>
+
+                <input th:field="*{tag.tagname}" placeholder="Tag"/>
                 <button type="submit">Post!</button>
             </form>
         </div>

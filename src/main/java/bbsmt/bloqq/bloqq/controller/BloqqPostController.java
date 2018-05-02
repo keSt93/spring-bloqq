@@ -58,9 +58,6 @@ public class BloqqPostController {
         modelAndView.addObject("tagObject", new Tags());
         modelAndView.addObject("bloqqpost", currentBloqqPost);
         modelAndView.addObject("kommentarListe", kommentarRepository.getAllByBloqqPostOrderByCreationDateDesc(currentBloqqPost));
-        for(Kommentar current : kommentarList) {
-            modelAndView.addObject("tagsKommentare", tagRepository.getAllByKommentar(current));
-        }
         modelAndView.addObject("mehrVonUserListe", bloqqRepository.findAllByUserAndIdNotOrderByCreateDateDesc(currentUser,currentBloqqPost.getId()));
         return modelAndView;
     }
@@ -88,20 +85,4 @@ public class BloqqPostController {
             return "redirect:/";
         }
     }
-
-    @PostMapping(value = "/postTagKommentarAction/{bloqqId}")
-    private String saveTag(Tags tagsObject, @PathVariable int bloqqId) {
-        BloqqPost currentPost = bloqqRepository.findById(bloqqId);
-        Kommentar kommentar = kommentarRepository.getKommentarByBloqqPost(currentPost);
-
-        if(kommentar != null && currentPost != null) {
-            tagsObject.setTags(tagsObject.getTags());
-            tagsObject.setKommentar(kommentar);
-            return "redirect:/bp/id/" + bloqqId;
-        } else {
-            return "redirect:/";
-        }
-    }
-
-
 }

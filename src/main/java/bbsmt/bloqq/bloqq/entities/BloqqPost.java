@@ -27,6 +27,9 @@ public class BloqqPost {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
+    @OneToOne
+    private Tags tag;
+
     public User getUser() {
         return user;
     }
@@ -75,4 +78,12 @@ public class BloqqPost {
         this.content = content;
     }
 
+
+    public Tags getTag() {
+        return tag;
+    }
+
+    public void setTag(Tags tag) {
+        this.tag = tag;
+    }
 }
