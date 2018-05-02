@@ -31,8 +31,11 @@ public class IndexController {
 
         User latestUser = userRepository.findFirstUserByOrderByIdDesc();
         Iterable<BloqqPost> mostRecentPost = bloqqRepository.findFirst2ByOrderByIdDesc();
+
+        int allBloqqx = bloqqRepository.countAllBy();
         m.addObject("lastBloqqPost", mostRecentPost);
         m.addObject("lastUser", latestUser);
+        m.addObject("allBloqqx", allBloqqx);
         return m;
     }
 

@@ -18,4 +18,6 @@ public interface BloqqRepository extends PagingAndSortingRepository<BloqqPost, I
     public Iterable<BloqqPost> findAllByOrderByCreateDateDesc();
     public Iterable<BloqqPost> findAllByUserAndIdNotOrderByCreateDateDesc(User user, int id);
 
+    public int countAllBy();
+
 }
